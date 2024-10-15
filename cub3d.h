@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:24 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/04 15:59:06 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/15 14:39:46 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,26 @@ typedef struct s_game
 	int				x;
 	int				y;
 	char			**map;
-	char			**maptest;
 	int				xtest;
 	int				ytest;
 	float			playerx;
 	float			playery;
+	float			dirx;
+	float			diry;
+	int				sky;
+	int				floor;
 	t_img			*screen;
 	int				w;
 	int				a;
 	int				s;
 	int				d;
 	int				moved;
-	int				maxmapx;
-	int				maxmapy;
 	unsigned long	framecount;
 	int				badnum;
 }	t_game;
 
 int		ft_destroy(t_game *game);
-void	clear_screen(t_game *game, unsigned int color);
+void	ft_clear_screen(t_game *game, unsigned int color);
 void	ft_destroyall(t_game *game);
 int		ft_update(t_game *game);
 void	ft_hooks(t_game *game);
@@ -63,5 +64,5 @@ void	ft_frames(t_game *game);
 void	ft_mapread2(int fd, char *line);
 void	ft_destroyall2(t_game *game);
 int		ft_mapread3(char *line, t_game *game, int fd);
-
+void	ft_topdown(t_game *game);
 #endif

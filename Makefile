@@ -6,14 +6,14 @@
 #    By: umosse <umosse@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/04 12:53:11 by umosse            #+#    #+#              #
-#    Updated: 2024/10/04 12:55:24 by umosse           ###   ########.fr        #
+#    Updated: 2024/10/15 14:42:41 by umosse           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 NAME = cub3d
 NAME_BONUS = 
-SRCS = 
+SRCS = cub3d.c cub3dutils.c movement.c raycasting.c
 SRCS_BONUS = 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
@@ -22,13 +22,13 @@ RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJS) minilibx-linux/libmlx.a Libft/libft.a Printf/libftprintf.a
+$(NAME): $(OBJS) minilibx-linux/libmlx.a Libft/libft.a
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -Lminilibx-linux -lmlx_Linux -lmlx -lX11 -lXext -lm Libft/libft.a
 
 minilibx-linux/libmlx.a:
 	make -C minilibx-linux
 
-bonus: $(OBJS_BONUS) Libft/libft.a Printf/printf.a
+bonus: $(OBJS_BONUS) Libft/libft.a
 	cc $(CFLAGS) -o $(NAME_BONUS) $(OBJS_BONUS) Libft/libft.a
 
 Libft/libft.a:
