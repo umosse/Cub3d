@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:28:29 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/15 14:46:37 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/18 12:15:03 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 void	ft_hooks(t_game *game)
 {
 	//mlx_hook(game->win, KeyPress, KeyPressMask, &ft_key_pressed, game);
-	//mlx_hook(game->win, DestroyNotify, StructureNotifyMask, &ft_destroy, game);
+	mlx_hook(game->win, DestroyNotify, StructureNotifyMask, &ft_destroy, game);
 	mlx_loop_hook(game->mlx, ft_update, game);
 	//mlx_hook(game->win, KeyRelease, KeyReleaseMask, &ft_key_released, game);
 	mlx_loop(game->mlx);

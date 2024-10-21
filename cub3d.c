@@ -6,17 +6,17 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:00 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/15 15:30:07 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/21 17:16:52 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// int	ft_destroy(t_game *game)
-// {
-// 	mlx_loop_end(game->mlx);
-// 	return (1);
-// }
+int	ft_destroy(t_game *game)
+{
+	mlx_loop_end(game->mlx);
+	return (1);
+}
 
 // void	ft_end(t_game *game, int j)
 // {
@@ -46,9 +46,11 @@ int	ft_update(t_game *game)
 {
 	//ft_frames(game);
 	//ft_movement(game);
+	game->planex = 0.66;
+	game->planey = 0;
 	ft_clear_screen(game, 0);
 	ft_topdown(game);
-	//ft_raycasting();
+	ft_raycasting(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->screen, 0, 0);
 	return (0);
 }

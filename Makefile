@@ -6,7 +6,7 @@
 #    By: umosse <umosse@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/04 12:53:11 by umosse            #+#    #+#              #
-#    Updated: 2024/10/15 14:42:41 by umosse           ###   ########.fr        #
+#    Updated: 2024/10/21 17:19:15 by umosse           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,12 +37,10 @@ Libft/libft.a:
 clean:
 	$(RM) $(OBJS) $(OBJS_BONUS)
 	cd Libft && make clean
-	cd Printf && make clean
 
 fclean : clean
 	$(RM) $(NAME) $(NAME_BONUS)
 	cd Libft && make fclean
-	cd Printf && make fclean
 
 re: fclean all
 
