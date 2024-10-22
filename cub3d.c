@@ -6,11 +6,12 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:00 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/21 17:16:52 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/23 00:14:39 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <stdio.h>
 
 int	ft_destroy(t_game *game)
 {
@@ -63,6 +64,27 @@ int	ft_update(t_game *game)
 // 	return (0);
 // }
 
+void	test(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	printf("for x = %d\n", game->maxmapx);
+	printf("for y = %d\n", game->maxmapy);
+	while (y < game->maxmapy)
+	{
+		x = 0;
+		while (x < game->maxmapx + 10)
+		{
+			write(1, &game->map[y][x], 1);
+			x++;
+		}
+		y++;
+	}
+	write(1, "\n", 1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -71,12 +93,8 @@ int	main(int argc, char **argv)
 	game = (t_game){0};
 	if (argc == 2)
 	{
-		// if (!parsing)
-		// {
-		// 	write(2, "Error\n", 6);
-		// 	ft_end(&game, 1);
-		// 	return (1);
-		// }
+		ft_mapread(argv[1], &game);
+		//test(&game);
 		game.mlx = mlx_init();
 		if (!game.mlx)
 			return (1);

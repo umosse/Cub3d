@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:24 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/21 17:11:17 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/22 23:56:29 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ typedef struct s_game
 	int				a;
 	int				s;
 	int				d;
+	int				maxmapx;
+	int				maxmapy;
+	char**			maptest;
 }	t_game;
 
 //cub3d.c
@@ -73,6 +76,7 @@ void	ft_hooks(t_game *game);
 //movement.c
 //raycasting.c
 void	ft_topdown(t_game *game);
+void	ft_dda(t_game *game);
 void	ft_raycasting(t_game *game);
 //commented
 void	ft_destroyall(t_game *game);
@@ -83,4 +87,10 @@ void	ft_frames(t_game *game);
 void	ft_mapread2(int fd, char *line);
 void	ft_destroyall2(t_game *game);
 int		ft_mapread3(char *line, t_game *game, int fd);
+
+
+//maptest.c
+char	**ft_mapalloc(char *file, t_game *game);
+char	**ft_mapread(char *file, t_game *game);
+
 #endif

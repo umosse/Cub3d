@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 14:49:07 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/21 17:18:28 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/23 00:20:21 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_dda(t_game *game)
 			game->mapy += game->stepy;
 			game->side = 1;
 		}
-		if (game->map[game->mapx][game->mapy] > 0)
+		if (game->map[game->mapy][game->mapx] > 0)
 			game->hit = 1;
 	}
 }
@@ -99,5 +99,7 @@ void	ft_raycasting(t_game *game)
 		game->drawend = game->lineheight / 2 + 270;
 		if (game->drawend >= 540)
 			game->drawend = 539;
+		if (game->map[y][x] == '1')
+			//finish tomorrow
 	}
 }
