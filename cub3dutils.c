@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:28:29 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/18 12:15:03 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/23 15:51:30 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ void	ft_hooks(t_game *game)
 
 void	ft_clear_screen(t_game *game, unsigned int color)
 {
-	const int	s = game->screen->width * game->screen->height;
+	const int	s = W_LENGTH * W_HEIGHT;
 	int			i;
 
 	i = -1;
 	while (++i < s)
-		*(((unsigned int *)game->screen->data + i)) = color;
+		*(((unsigned int *)game->data.addr + i)) = color;
 }

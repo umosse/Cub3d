@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:24 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/22 23:56:29 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/23 14:59:40 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,28 @@
 # include <stdarg.h>
 # include <limits.h>
 # include <math.h>
+
+//WINDOW
+# define W_HEIGHT 540
+# define W_LENGTH 960
+
+//COLORS
+# define P_WHITE 0xFFFFFFFF
+# define P_RED 0x00FF0000
+# define P_CYAN 0X0000FFFF
+# define P_MAGENTA 0x00FF00FF
+# define P_YELLOW 0x00FFFF00
+# define P_GREEN 0x0000FF00
+# define P_BLUE 0x000000FF
+# define P_BLACK 0x00000000
+
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
 
 typedef struct s_game
 {
@@ -65,6 +87,8 @@ typedef struct s_game
 	int				maxmapx;
 	int				maxmapy;
 	char**			maptest;
+	unsigned int	color;
+	t_data			data;
 }	t_game;
 
 //cub3d.c
