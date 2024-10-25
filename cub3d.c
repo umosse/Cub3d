@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:00 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/23 18:38:10 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/24 18:03:14 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	test(t_game *game)
 		}
 		y++;
 	}
-	write(1, "\n", 1);
 }
 
 int	main(int argc, char **argv)
@@ -88,16 +87,17 @@ int	main(int argc, char **argv)
 	(void)argv;
 	
 	game = (t_game){0};
+	game.movespeed = 0.5;
 	game.dirx = 0;
 	game.diry = 1;
 	game.planex = 0.85;
 	game.planey = 0;
-	game.playerx = 1.5;
-	game.playery = 1.5;
+	game.playerx = 15.5;
+	game.playery = 4.5;
 	if (argc == 2)
 	{
 		ft_mapread(argv[1], &game);
-		//test(&game);
+		// test(&game);
 		game.mlx = mlx_init();
 		if (!game.mlx)
 			return (1);
@@ -105,7 +105,7 @@ int	main(int argc, char **argv)
 		//ft_xpm_to_image(&game);
 		game.data.img = mlx_new_image(game.mlx, W_LENGTH, W_HEIGHT);
 		game.data.addr = mlx_get_data_addr(game.data.img, &game.data.bits_per_pixel,
-            &game.data.line_length, &game.data.endian);
+			&game.data.line_length, &game.data.endian);
 		ft_hooks(&game);
 	}
 }
