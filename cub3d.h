@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:24 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/24 17:58:21 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/25 14:41:57 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,10 @@ typedef struct s_game
 	double			playery;
 	double			dirx;
 	double			diry;
+	double			olddirx;
 	double			planex;
 	double			planey;
+	double			oldplanex;
 	double			camerax;
 	double			raydirx;
 	double			raydiry;
@@ -90,6 +92,7 @@ typedef struct s_game
 	char**			maptest;
 	unsigned int	color;
 	double			movespeed;
+	double			rotspeed;
 	t_data			data;
 }	t_game;
 
@@ -100,8 +103,9 @@ int		ft_update(t_game *game);
 void	ft_clear_screen(t_game *game, unsigned int color);
 void	ft_hooks(t_game *game);
 //movement.c
-int	ft_key_pressed(int keysym, t_game *game);
-int	ft_key_released(int keysym, t_game *game);
+void	ft_movement(t_game *game);
+int		ft_key_pressed(int keysym, t_game *game);
+int		ft_key_released(int keysym, t_game *game);
 //raycasting.c
 void	ft_topdown(t_game *game);
 void	ft_dda(t_game *game);

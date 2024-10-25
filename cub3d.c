@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:00 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/24 18:03:14 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/25 14:57:19 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	ft_destroy(t_game *game)
 int	ft_update(t_game *game)
 {
 	//ft_frames(game);
-	//ft_movement(game);
 	ft_clear_screen(game, 0);
 	ft_topdown(game);
 	ft_raycasting(game);
@@ -87,7 +86,8 @@ int	main(int argc, char **argv)
 	(void)argv;
 	
 	game = (t_game){0};
-	game.movespeed = 0.5;
+	game.movespeed = 0.1;
+	game.rotspeed = 0.05;
 	game.dirx = 0;
 	game.diry = 1;
 	game.planex = 0.85;
