@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:44:01 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/25 16:44:55 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/28 12:58:58 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,8 @@ int	ft_key_released(int keysym, t_game *game)
 	return (0);
 }
 
-void	ft_movement(t_game *game)
+void	ft_rotate(t_game *game)
 {
-	if (game->w == 1)
-	{
-		printf("test1 = %d\n", game->map[(int)game->playery][(int)(game->playerx + game->dirx * game->movespeed + 0.5)]);
-		printf("test1 = %d\n", game->map[(int)(game->playery + game->dirx * game->movespeed)][(int)game->playerx]);
-		if (game->map[(int)game->playery][(int)(game->playerx + game->dirx * game->movespeed)] == '0')
-			game->playerx += game->dirx * game->movespeed;
-		if (game->map[(int)(game->playery + game->dirx * game->movespeed + 0.5)][(int)game->playerx] == '0')
-			game->playery += game->diry * game->movespeed;
-	}
-	if (game->s == 1)
-	{
-		if (game->map[(int)game->playery][(int)(game->playerx - game->dirx * game->movespeed)] == '0')
-			game->playerx -= game->dirx * game->movespeed;
-		if (game->map[(int)(game->playery - game->dirx * game->movespeed)][(int)game->playerx] == '0')
-			game->playery -= game->diry * game->movespeed;
-	}
 	if (game->d == 1)
 	{
 		game->olddirx = game->dirx;
@@ -77,4 +61,25 @@ void	ft_movement(t_game *game)
 		game->planex = game->planex * cos(game->rotspeed) - game->planey * sin(game->rotspeed);
 		game->planey = game->planex * sin(game->rotspeed) + game->planey * cos(game->rotspeed);
 	}
+}
+
+void	ft_movement(t_game *game)
+{
+	if (game->w == 1)
+	{
+		printf("test1 = %d\n", game->map[(int)game->playery][(int)(game->playerx + game->dirx * game->movespeed + 0.5)]);
+		printf("test1 = %d\n", game->map[(int)(game->playery + game->dirx * game->movespeed)][(int)game->playerx]);
+		if (game->map[(int)game->playery][(int)(game->playerx + game->dirx * game->movespeed)] == '0')
+			game->playerx += game->dirx * game->movespeed;
+		if (game->map[(int)(game->playery + game->dirx * game->movespeed + 0.5)][(int)game->playerx] == '0')
+			game->playery += game->diry * game->movespeed;
+	}
+	if (game->s == 1)
+	{
+		if (game->map[(int)game->playery][(int)(game->playerx - game->dirx * game->movespeed)] == '0')
+			game->playerx -= game->dirx * game->movespeed;
+		if (game->map[(int)(game->playery - game->dirx * game->movespeed)][(int)game->playerx] == '0')
+			game->playery -= game->diry * game->movespeed;
+	}
+	ft_rotate(game);
 }

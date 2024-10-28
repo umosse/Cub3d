@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 14:49:07 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/24 16:37:16 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/28 13:55:49 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 void	ft_topdown(t_game *game)
 {
-	const int	s = 960 * 540;
+	const int	s = W_LENGTH * W_HEIGHT;
 	int			i;
 	
 
@@ -79,49 +79,11 @@ void	ft_raycasting(t_game *game)
 		game->deltadistx = fabs(1 / game->raydirx);
 		game->deltadisty = fabs(1 / game->raydiry);
 		game->hit = 0;
-		if (game->raydirx < 0)
-		{
-			game->stepx = -1;
-			game->sidedistx = (game->playerx - game->mapx) * game->deltadistx;
-		}
-		else
-		{
-			game->stepx = 1;
-			game->sidedistx = (game->mapx + 1.0 - game->playerx) * game->deltadistx;
-		}
-		if (game->raydiry < 0)
-		{
-			game->stepy = -1;
-			game->sidedisty = (game->playery - game->mapy) * game->deltadisty;
-		}
-		else
-		{
-			game->stepy = 1;
-			game->sidedisty = (game->mapy + 1.0 - game->playery) * game->deltadisty;
-		}
+		
+		ft_raycast_calcs(game);
 		ft_dda(game);
-		if (game->side == 0)
-			game->perpwalldist = (game->sidedistx - game->deltadistx);
-		else
-			game->perpwalldist = (game->sidedisty - game->deltadisty);
-		game->lineheight = (int)(W_HEIGHT / game->perpwalldist);
-		game->drawstart = -1 * game->lineheight / 2 + W_HEIGHT / 2;
-		if (game->drawstart < 0)
-			game->drawstart = 0;
-		game->drawend = game->lineheight / 2 + W_HEIGHT / 2;
-		if (game->drawend >= W_HEIGHT)
-			game->drawend = W_HEIGHT - 1;
-		if (game->map[game->mapy][game->mapx] == '1')
-		{
-			if (game->side == 1 && game->raydiry > 0) //north
-				game->color = P_BLACK;
-			if (game->side == 1 && game->raydiry <= 0) //south
-				game->color = P_MAGENTA;
-			if (game->side == 0 && game->raydirx > 0) //west
-				game->color = P_YELLOW;
-			if (game->side == 0 && game->raydirx <= 0) //east
-				game->color = P_BLUE;
-		}
+		ft_drawsize(game);
+		ft_drawcolor(game);
 		y = game->drawstart;
 		while (y < game->drawend)
 		{
