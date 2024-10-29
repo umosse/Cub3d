@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 14:49:07 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/28 13:55:49 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/29 17:15:30 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,26 @@ void	ft_raycasting(t_game *game)
 		ft_raycast_calcs(game);
 		ft_dda(game);
 		ft_drawsize(game);
-		ft_drawcolor(game);
-		y = game->drawstart;
-		while (y < game->drawend)
-		{
-			my_mlx_pixel_put(&game->data, x, y, game->color);
-			y++;
-		}
+		//ft_drawcolor(game);
+		// y = game->drawstart;
+		// while (y < game->drawend)
+		// {
+		// 	my_mlx_pixel_put(&game->data, x, y, game->color);
+		// 	y++;
+		// }
+
+		game->textnum = game->map[game->mapy][game->mapx];
+		if (game->side == 0)
+			game->wallx = game->playery + game->perpwalldist * game->raydiry;
+		else
+			game->wallx = game->playerx + game->perpwalldist * game->raydirx;
+		game->wallx = floor(game->wallx);
+		game->textx = (int)(game->wallx * (double)textwidth);
+		if (game->side == 0 && game->raydirx > 0)
+			game->textx = textwidth - game->textx - 1;
+		if (game->side == 1 && game->raydiry < 0)
+			game->textx = textwidth - game->textx - 1;
+		game->step = 1.0 * textheight / game->lineheight;
 		x++;
 	}
 }

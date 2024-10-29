@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:00 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/25 14:57:19 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/29 16:24:16 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	ft_destroy(t_game *game)
 
 int	ft_update(t_game *game)
 {
-	//ft_frames(game);
 	ft_clear_screen(game, 0);
 	ft_topdown(game);
 	ft_raycasting(game);
@@ -52,13 +51,18 @@ int	ft_update(t_game *game)
 	return (0);
 }
 
-// int	ft_xpm_to_image(t_game *game)
-// {
-// 	int		width;
-// 	int		height;
+int	ft_xpm_to_image(t_game *game)
+{
+	int		width;
+	int		height;
 
-// 	return (0);
-// }
+	game->t_north = mlx_xpm_file_to_image(game->mlx, T_NORTH, &width, &height);
+	game->t_south = mlx_xpm_file_to_image(game->mlx, T_SOUTH, &width, &height);
+	game->t_west = mlx_xpm_file_to_image(game->mlx, T_WEST, &width, &height);
+	game->t_east = mlx_xpm_file_to_image(game->mlx, T_EAST, &width, &height);
+	game->t_door = mlx_xpm_file_to_image(game->mlx, T_DOOR, &width, &height);
+	return (0);
+}
 
 void	test(t_game *game)
 {
@@ -83,8 +87,8 @@ void	test(t_game *game)
 int	main(int argc, char **argv)
 {
 	t_game	game;
+
 	(void)argv;
-	
 	game = (t_game){0};
 	game.movespeed = 0.1;
 	game.rotspeed = 0.05;
@@ -102,10 +106,11 @@ int	main(int argc, char **argv)
 		if (!game.mlx)
 			return (1);
 		game.win = mlx_new_window(game.mlx, W_LENGTH, W_HEIGHT, "cub3d");
-		//ft_xpm_to_image(&game);
+		ft_xpm_to_image(&game);
 		game.data.img = mlx_new_image(game.mlx, W_LENGTH, W_HEIGHT);
-		game.data.addr = mlx_get_data_addr(game.data.img, &game.data.bits_per_pixel,
-			&game.data.line_length, &game.data.endian);
+		game.data.addr = mlx_get_data_addr(game.data.img,
+				&game.data.bits_per_pixel,
+				&game.data.line_length, &game.data.endian);
 		ft_hooks(&game);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:24 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/28 13:08:48 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/29 17:15:04 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,13 @@
 # define P_GREEN 0x0000FF00
 # define P_BLUE 0x000000FF
 # define P_BLACK 0x00000000
+
+//TEXTURES
+# define T_NORTH ""
+# define T_SOUTH ""
+# define T_WEST ""
+# define T_EAST ""
+# define T_DOOR ""
 
 typedef struct	s_data {
 	void	*img;
@@ -94,6 +101,15 @@ typedef struct s_game
 	double			movespeed;
 	double			rotspeed;
 	t_data			data;
+	int				textnum;
+	double			wallx;
+	int				textx;
+	double			step;
+	t_img			*t_north;
+	t_img			*t_south;
+	t_img			*t_west;
+	t_img			*t_east;
+	t_img			*t_door;
 }	t_game;
 
 //cub3d.c
