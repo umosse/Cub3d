@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:00 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/29 16:24:16 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/30 15:35:00 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,6 @@ int	ft_xpm_to_image(t_game *game)
 	return (0);
 }
 
-void	test(t_game *game)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	printf("for x = %d\n", game->maxmapx);
-	printf("for y = %d\n", game->maxmapy);
-	while (y < game->maxmapy)
-	{
-		x = 0;
-		while (x < game->maxmapx)
-		{
-			write(1, &game->map[y][x], 1);
-			x++;
-		}
-		y++;
-	}
-}
-
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -101,7 +81,6 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		ft_mapread(argv[1], &game);
-		// test(&game);
 		game.mlx = mlx_init();
 		if (!game.mlx)
 			return (1);

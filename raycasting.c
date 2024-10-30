@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 14:49:07 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/29 17:15:30 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/30 16:31:11 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ void	ft_dda(t_game *game)
 {
 	while (game->hit == 0)
 	{
-		if (game->mapx < 0 || game->mapx > W_LENGTH || game->mapy < 0 || game->mapy > W_HEIGHT)
-			break ;
 		if (game->sidedistx < game->sidedisty)
 		{
 			game->sidedistx += game->deltadistx;
@@ -58,7 +56,7 @@ void	ft_dda(t_game *game)
 			game->mapy += game->stepy;
 			game->side = 1;
 		}
-		if (game->map[game->mapy][game->mapx] > '0')
+		if (game->map[game->mapy][game->mapx] == '1')
 			game->hit = 1;
 	}
 }
@@ -66,7 +64,6 @@ void	ft_dda(t_game *game)
 void	ft_raycasting(t_game *game)
 {
 	int	x;
-	int	y;
 
 	x = 0;
 	while (x < W_LENGTH)
@@ -79,30 +76,10 @@ void	ft_raycasting(t_game *game)
 		game->deltadistx = fabs(1 / game->raydirx);
 		game->deltadisty = fabs(1 / game->raydiry);
 		game->hit = 0;
-		
 		ft_raycast_calcs(game);
 		ft_dda(game);
 		ft_drawsize(game);
-		//ft_drawcolor(game);
-		// y = game->drawstart;
-		// while (y < game->drawend)
-		// {
-		// 	my_mlx_pixel_put(&game->data, x, y, game->color);
-		// 	y++;
-		// }
-
-		game->textnum = game->map[game->mapy][game->mapx];
-		if (game->side == 0)
-			game->wallx = game->playery + game->perpwalldist * game->raydiry;
-		else
-			game->wallx = game->playerx + game->perpwalldist * game->raydirx;
-		game->wallx = floor(game->wallx);
-		game->textx = (int)(game->wallx * (double)textwidth);
-		if (game->side == 0 && game->raydirx > 0)
-			game->textx = textwidth - game->textx - 1;
-		if (game->side == 1 && game->raydiry < 0)
-			game->textx = textwidth - game->textx - 1;
-		game->step = 1.0 * textheight / game->lineheight;
+		ft_drawtextures(game, x);
 		x++;
 	}
 }

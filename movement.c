@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:44:01 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/28 12:58:58 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/30 16:53:50 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,9 @@ void	ft_movement(t_game *game)
 {
 	if (game->w == 1)
 	{
-		printf("test1 = %d\n", game->map[(int)game->playery][(int)(game->playerx + game->dirx * game->movespeed + 0.5)]);
-		printf("test1 = %d\n", game->map[(int)(game->playery + game->dirx * game->movespeed)][(int)game->playerx]);
 		if (game->map[(int)game->playery][(int)(game->playerx + game->dirx * game->movespeed)] == '0')
 			game->playerx += game->dirx * game->movespeed;
-		if (game->map[(int)(game->playery + game->dirx * game->movespeed + 0.5)][(int)game->playerx] == '0')
+		if (game->map[(int)(game->playery + game->diry * game->movespeed)][(int)game->playerx] == '0')
 			game->playery += game->diry * game->movespeed;
 	}
 	if (game->s == 1)

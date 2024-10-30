@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:28:29 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/24 17:39:58 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/30 15:34:08 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,29 +50,6 @@ void	ft_hooks(t_game *game)
 	mlx_loop(game->mlx);
 	//ft_end(game, 0);
 }
-
-// char	**ft_mapalloc(char *file, t_game *game)
-// {
-// 	int		fd;
-// 	char	*line;
-// 	char	**map;
-
-// 	fd = open(file, O_RDONLY);
-// 	if (fd == -1)
-// 		return (NULL);
-// 	line = get_next_line(fd);
-// 	while (line)
-// 	{
-// 		game->maxmapy++;
-// 		free (line);
-// 		line = get_next_line(fd);
-// 	}
-// 	free (line);
-// 	map = ft_calloc(game->maxmapy, sizeof(char *));
-// 	game->maptest = ft_calloc(game->maxmapy, sizeof(char *));
-// 	close(fd);
-// 	return (map);
-// }
 
 void	ft_clear_screen(t_game *game, unsigned int color)
 {

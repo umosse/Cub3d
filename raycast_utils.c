@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:00:11 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/28 13:09:02 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/30 15:27:41 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,33 @@ void	ft_raycast_calcs(t_game *game)
 	}
 }
 
+void	ft_drawtextures(t_game *game, int x)
+{
+	int	y;
+
+	if (game->side == 0)
+		game->wallx = game->playery + game->perpwalldist * game->raydiry;
+	else
+		game->wallx = game->playerx + game->perpwalldist * game->raydirx;
+	game->wallx -= floor(game->wallx);
+	game->textx = (int)(game->wallx * (double)game->t_north->width);
+	if (game->side == 0 && game->raydirx > 0)
+		game->textx = game->t_north->width - game->textx - 1;
+	if (game->side == 1 && game->raydiry < 0)
+		game->textx = game->t_north->width - game->textx - 1;
+	game->step = 1.0 * game->t_north->height / game->lineheight;
+	game->textpos = (game->drawstart - W_HEIGHT / 2 + game->lineheight / 2) * game->step;
+	y = game->drawstart;
+	while (y < game->drawend)
+	{
+		game->texty = (int)game->textpos & (game->t_north->height - 1);
+		game->textpos += game->step;
+		ft_colortextures(game);
+		my_mlx_pixel_put(&game->data, x, y, game->color);
+		y++;
+	}
+}
+
 void	ft_drawsize(t_game *game)
 {
 	if (game->side == 0)
@@ -51,17 +78,17 @@ void	ft_drawsize(t_game *game)
 		game->drawend = W_HEIGHT - 1;
 }
 
-void	ft_drawcolor(t_game *game)
+void	ft_colortextures(t_game *game)
 {
 	if (game->map[game->mapy][game->mapx] == '1')
 	{
-		if (game->side == 1 && game->raydiry > 0) //north
-			game->color = P_BLACK;
-		if (game->side == 1 && game->raydiry <= 0) //south
-			game->color = P_MAGENTA;
-		if (game->side == 0 && game->raydirx > 0) //west
-			game->color = P_YELLOW;
-		if (game->side == 0 && game->raydirx <= 0) //east
-			game->color = P_BLUE;
+		if (game->side == 1 && game->raydiry > 0)
+			game->color = ((unsigned int*)game->t_north->data)[game->t_north->width * game->texty + game->textx];
+		if (game->side == 1 && game->raydiry <= 0)
+			game->color = ((unsigned int*)game->t_south->data)[game->t_south->width * game->texty + game->textx];
+		if (game->side == 0 && game->raydirx > 0)
+			game->color = ((unsigned int*)game->t_west->data)[game->t_west->width * game->texty + game->textx];
+		if (game->side == 0 && game->raydirx <= 0)
+			game->color = ((unsigned int*)game->t_east->data)[game->t_east->width * game->texty + game->textx];
 	}
 }

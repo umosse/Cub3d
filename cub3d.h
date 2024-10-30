@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:24 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/29 17:15:04 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/30 15:26:20 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@
 # define P_BLACK 0x00000000
 
 //TEXTURES
-# define T_NORTH ""
-# define T_SOUTH ""
-# define T_WEST ""
-# define T_EAST ""
-# define T_DOOR ""
+# define T_NORTH "textures/tile1.xpm"
+# define T_SOUTH "textures/tile2.xpm"
+# define T_WEST "textures/tile3.xpm"
+# define T_EAST "textures/tile4.xpm"
+# define T_DOOR "textures/tile5.xpm"
 
 typedef struct	s_data {
 	void	*img;
@@ -104,7 +104,9 @@ typedef struct s_game
 	int				textnum;
 	double			wallx;
 	int				textx;
+	int				texty;
 	double			step;
+	double			textpos;
 	t_img			*t_north;
 	t_img			*t_south;
 	t_img			*t_west;
@@ -126,6 +128,7 @@ int		ft_key_pressed(int keysym, t_game *game);
 int		ft_key_released(int keysym, t_game *game);
 
 //raycasting.c
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	ft_topdown(t_game *game);
 void	ft_dda(t_game *game);
 void	ft_raycasting(t_game *game);
@@ -133,7 +136,8 @@ void	ft_raycasting(t_game *game);
 //raycast_utils
 void	ft_raycast_calcs(t_game *game);
 void	ft_drawsize(t_game *game);
-void	ft_drawcolor(t_game *game);
+void	ft_drawtextures(t_game *game, int x);
+void	ft_colortextures(t_game *game);
 
 //commented
 void	ft_destroyall(t_game *game);
