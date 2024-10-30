@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 14:49:07 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/30 16:31:11 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/30 22:25:12 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_dda(t_game *game)
 			game->mapy += game->stepy;
 			game->side = 1;
 		}
-		if (game->map[game->mapy][game->mapx] == '1')
+		if (game->map[game->mapy][game->mapx] == '1' || game->map[game->mapy][game->mapx] == 'D')
 			game->hit = 1;
 	}
 }

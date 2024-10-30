@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:00:11 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/30 15:27:41 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/30 22:23:17 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,9 @@ void	ft_drawsize(t_game *game)
 
 void	ft_colortextures(t_game *game)
 {
-	if (game->map[game->mapy][game->mapx] == '1')
+	if (game->map[game->mapy][game->mapx] == 'D')
+		game->color = ((unsigned int*)game->t_door->data)[game->t_door->width * game->texty + game->textx];
+	else if (game->map[game->mapy][game->mapx] == '1')
 	{
 		if (game->side == 1 && game->raydiry > 0)
 			game->color = ((unsigned int*)game->t_north->data)[game->t_north->width * game->texty + game->textx];

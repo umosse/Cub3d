@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:24 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/30 15:26:20 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/30 22:29:51 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ typedef struct s_game
 	int				a;
 	int				s;
 	int				d;
+	int				r;
+	int				l;
 	int				maxmapx;
 	int				maxmapy;
 	char**			maptest;
