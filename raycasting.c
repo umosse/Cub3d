@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 14:49:07 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/30 22:25:12 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/31 15:28:25 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,20 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	char	*dst;
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
 }
 
 void	ft_topdown(t_game *game)
 {
 	const int	s = W_LENGTH * W_HEIGHT;
 	int			i;
-	
 
 	game->sky = P_CYAN;
 	game->floor = P_GREEN;
 	i = -1;
 	while (++i < s)
 	{
-		while (i < s/2)
+		while (i < (s / 2))
 		{
 			*(((unsigned int *)game->data.addr + i)) = game->sky;
 			i++;
@@ -56,7 +55,8 @@ void	ft_dda(t_game *game)
 			game->mapy += game->stepy;
 			game->side = 1;
 		}
-		if (game->map[game->mapy][game->mapx] == '1' || game->map[game->mapy][game->mapx] == 'D')
+		if (game->map[game->mapy][game->mapx] == '1' ||
+				game->map[game->mapy][game->mapx] == 'D')
 			game->hit = 1;
 	}
 }

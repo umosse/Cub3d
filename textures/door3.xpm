@@ -1,0 +1,31 @@
+/* XPM */
+static char *tiledoor3[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 9 1 ",
+"  c #3B00AA",
+". c #4501B6",
+"X c #5204C0",
+"o c #5E09C7",
+"O c #7A1DD5",
+"+ c #8123D7",
+"@ c #8426D9",
+"# c #9336DF",
+"$ c #983CE0",
+/* pixels */
+" . .Xooooooo. X ",
+"  XoOO+++#$$+. .",
+" XoOoXXXXXXo$+. ",
+".o$oX   .   X$+.",
+"X$oX Xooooo. o++",
+"X$o Xoo++OOo. o$",
+"X+o.oo+ooooOo..#",
+"X@oXo+o.  XoOoX+",
+"X$o.o$o .o.XOo O",
+".$o .o$ooOoX+o O",
+"..$o .o+Oo.o+X O",
+"X o$+  ...+$o. $",
+"o. +$+ooo+$+. X$",
+"Oo. +$$$$$+. o$o",
+"ooo.XXoooX. oOo.",
+" oOo. XXX  oOo. "
+};

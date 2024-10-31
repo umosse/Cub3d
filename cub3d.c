@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:00 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/30 15:35:00 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/31 15:33:51 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	ft_destroy(t_game *game)
 
 int	ft_update(t_game *game)
 {
+	ft_frames(game);
 	ft_clear_screen(game, 0);
 	ft_topdown(game);
 	ft_raycasting(game);
@@ -61,7 +62,22 @@ int	ft_xpm_to_image(t_game *game)
 	game->t_west = mlx_xpm_file_to_image(game->mlx, T_WEST, &width, &height);
 	game->t_east = mlx_xpm_file_to_image(game->mlx, T_EAST, &width, &height);
 	game->t_door = mlx_xpm_file_to_image(game->mlx, T_DOOR, &width, &height);
+	game->t_door2 = mlx_xpm_file_to_image(game->mlx, T_DOOR2, &width, &height);
+	game->t_door3 = mlx_xpm_file_to_image(game->mlx, T_DOOR3, &width, &height);
+	game->t_door4 = mlx_xpm_file_to_image(game->mlx, T_DOOR4, &width, &height);
 	return (0);
+}
+
+void	ft_setup(t_game *game)
+{
+	game->movespeed = 0.1;
+	game->rotspeed = 0.05;
+	game->dirx = 0;
+	game->diry = 1;
+	game->planex = 0.85;
+	game->planey = 0;
+	game->playerx = 15.5;
+	game->playery = 4.5;
 }
 
 int	main(int argc, char **argv)
@@ -70,14 +86,7 @@ int	main(int argc, char **argv)
 
 	(void)argv;
 	game = (t_game){0};
-	game.movespeed = 0.1;
-	game.rotspeed = 0.05;
-	game.dirx = 0;
-	game.diry = 1;
-	game.planex = 0.85;
-	game.planey = 0;
-	game.playerx = 15.5;
-	game.playery = 4.5;
+	ft_setup(&game);
 	if (argc == 2)
 	{
 		ft_mapread(argv[1], &game);

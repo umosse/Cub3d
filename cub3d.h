@@ -6,13 +6,13 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:24 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/30 22:29:51 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/31 15:49:58 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
+#ifndef CUB3D_H
 
-# define SO_LONG_H
+# define CUB3D_H
 
 # include "Libft/libft.h"
 # include "minilibx-linux/mlx.h"
@@ -43,13 +43,16 @@
 # define P_BLACK 0x00000000
 
 //TEXTURES
-# define T_NORTH "textures/tile1.xpm"
-# define T_SOUTH "textures/tile2.xpm"
-# define T_WEST "textures/tile3.xpm"
-# define T_EAST "textures/tile4.xpm"
-# define T_DOOR "textures/tile5.xpm"
+# define T_NORTH "textures/north.xpm"
+# define T_SOUTH "textures/south.xpm"
+# define T_WEST "textures/west.xpm"
+# define T_EAST "textures/east.xpm"
+# define T_DOOR "textures/door.xpm"
+# define T_DOOR2 "textures/door2.xpm"
+# define T_DOOR3 "textures/door3.xpm"
+# define T_DOOR4 "textures/door4.xpm"
 
-typedef struct	s_data {
+typedef struct s_data {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -96,9 +99,10 @@ typedef struct s_game
 	int				d;
 	int				r;
 	int				l;
+	int				e;
 	int				maxmapx;
 	int				maxmapy;
-	char**			maptest;
+	char			**maptest;
 	unsigned int	color;
 	double			movespeed;
 	double			rotspeed;
@@ -114,6 +118,10 @@ typedef struct s_game
 	t_img			*t_west;
 	t_img			*t_east;
 	t_img			*t_door;
+	t_img			*t_door2;
+	t_img			*t_door3;
+	t_img			*t_door4;
+	int				framecount;
 }	t_game;
 
 //cub3d.c
@@ -125,7 +133,13 @@ void	ft_clear_screen(t_game *game, unsigned int color);
 void	ft_hooks(t_game *game);
 
 //movement.c
+void	ft_lateral(t_game *game);
+void	ft_rotate(t_game *game);
+void	ft_door(t_game *game);
+void	ft_movement2(t_game *game);
 void	ft_movement(t_game *game);
+
+//movementutils.c
 int		ft_key_pressed(int keysym, t_game *game);
 int		ft_key_released(int keysym, t_game *game);
 
@@ -139,6 +153,7 @@ void	ft_raycasting(t_game *game);
 void	ft_raycast_calcs(t_game *game);
 void	ft_drawsize(t_game *game);
 void	ft_drawtextures(t_game *game, int x);
+void	ft_animdoor(t_game *game);
 void	ft_colortextures(t_game *game);
 
 //commented

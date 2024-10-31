@@ -6,20 +6,18 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:28:29 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/30 15:34:08 by umosse           ###   ########.fr       */
+/*   Updated: 2024/10/31 14:49:42 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// void	ft_frames(t_game *game)
-// {
-// 	game->framecount++;
-// 	if (game->dead == 1)
-// 		game->deathcount++;
-// 	if (game->framecount > 60)
-// 		game->framecount = 0;
-// }
+void	ft_frames(t_game *game)
+{
+	game->framecount++;
+	if (game->framecount > 60)
+		game->framecount = 0;
+}
 
 // void	ft_destroyall(t_game *game)
 // {
