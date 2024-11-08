@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:24 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/31 15:49:58 by umosse           ###   ########.fr       */
+/*   Updated: 2024/11/08 14:36:29 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,9 @@ typedef struct s_game
 	t_img			*t_door3;
 	t_img			*t_door4;
 	int				framecount;
+	int				mouse;
+	int				mousex;
+	int				mousey;
 }	t_game;
 
 //cub3d.c
@@ -129,6 +132,7 @@ int		ft_destroy(t_game *game);
 int		ft_update(t_game *game);
 
 //cub3dutils.c
+void	ft_frames(t_game *game);
 void	ft_clear_screen(t_game *game, unsigned int color);
 void	ft_hooks(t_game *game);
 
@@ -142,6 +146,7 @@ void	ft_movement(t_game *game);
 //movementutils.c
 int		ft_key_pressed(int keysym, t_game *game);
 int		ft_key_released(int keysym, t_game *game);
+void	ft_mouse(t_game *game);
 
 //raycasting.c
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);

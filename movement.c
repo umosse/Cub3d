@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:44:01 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/31 15:49:43 by umosse           ###   ########.fr       */
+/*   Updated: 2024/11/08 15:14:41 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,21 +73,21 @@ void	ft_door(t_game *game)
 	if (game->e == 1)
 	{
 		if (game->map[(int)game->playery][(int)(game->playerx
-			+ game->dirx * game->movespeed * 9)] == 'D')
+			+ game->dirx * game->movespeed * 90)] == 'D')
 			game->map[(int)game->playery][(int)(game->playerx
-					+ game->dirx * game->movespeed * 9)] = 'O';
+					+ game->dirx * game->movespeed * 90)] = 'O';
 		else if (game->map[(int)(game->playery + game->diry
-				* game->movespeed * 9)][(int)game->playerx] == 'D')
+				* game->movespeed * 90)][(int)game->playerx] == 'D')
 			game->map[(int)(game->playery + game->diry
 					* game->movespeed * 9)][(int)game->playerx] = 'O';
 		else if (game->map[(int)game->playery][(int)(game->playerx
-			+ game->dirx * game->movespeed * 9)] == 'O')
+			+ game->dirx * game->movespeed * 90)] == 'O')
 			game->map[(int)game->playery][(int)(game->playerx
-					+ game->dirx * game->movespeed * 9)] = 'D';
+					+ game->dirx * game->movespeed * 90)] = 'D';
 		else if (game->map[(int)(game->playery + game->diry
-				* game->movespeed * 9)][(int)game->playerx] == 'O')
+				* game->movespeed * 90)][(int)game->playerx] == 'O')
 			game->map[(int)(game->playery + game->diry
-					* game->movespeed * 9)][(int)game->playerx] = 'D';
+					* game->movespeed * 90)][(int)game->playerx] = 'D';
 	}
 }
 
@@ -110,6 +110,11 @@ void	ft_movement2(t_game *game)
 
 void	ft_movement(t_game *game)
 {
+	if (game->mouse == 1)
+	{
+		if (game->framecount <= 59)
+		ft_mouse(game);
+	}
 	if (game->w == 1)
 	{
 		if (game->map[(int)game->playery][(int)(game->playerx
@@ -126,5 +131,10 @@ void	ft_movement(t_game *game)
 	ft_movement2(game);
 	ft_lateral(game);
 	ft_rotate(game);
-	ft_door(game);
+	if (game->mouse == 1 && game->framecount == 60)
+	{
+		mlx_mouse_move(game->mlx, game->win, W_LENGTH / 2, W_HEIGHT / 2);
+		game->l = 0;
+		game->r = 0;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:00 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/31 15:33:51 by umosse           ###   ########.fr       */
+/*   Updated: 2024/11/08 14:52:49 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	ft_destroy(t_game *game)
 
 int	ft_update(t_game *game)
 {
+	ft_movement(game);
 	ft_frames(game);
 	ft_clear_screen(game, 0);
 	ft_topdown(game);
@@ -70,8 +71,8 @@ int	ft_xpm_to_image(t_game *game)
 
 void	ft_setup(t_game *game)
 {
-	game->movespeed = 0.1;
-	game->rotspeed = 0.05;
+	game->movespeed = 0.01;
+	game->rotspeed = 0.005;
 	game->dirx = 0;
 	game->diry = 1;
 	game->planex = 0.85;

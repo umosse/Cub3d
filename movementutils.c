@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 14:16:15 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/31 14:16:39 by umosse           ###   ########.fr       */
+/*   Updated: 2024/11/08 15:13:18 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ int	ft_key_pressed(int keysym, t_game *game)
 		game->e = 1;
 	else if (keysym == XK_Escape)
 		ft_destroy(game);
-	ft_movement(game);
+	else if (keysym == ' ' && game->mouse == 1)
+		game->mouse = 0;
+	else if (keysym == ' ')
+		game->mouse = 1;
+	ft_door(game);
 	return (0);
 }
 
@@ -51,4 +55,13 @@ int	ft_key_released(int keysym, t_game *game)
 	else if (keysym == 'e')
 		game->e = 0;
 	return (0);
+}
+
+void	ft_mouse(t_game *game)
+{
+	mlx_mouse_get_pos(game->mlx, game->win, &game->mousex, &game->mousey);
+	if (game->mousex < W_LENGTH / 2)
+		game->l = 1;
+	if (game->mousex > W_LENGTH / 2)
+		game->r = 1;
 }
