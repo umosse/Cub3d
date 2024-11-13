@@ -6,11 +6,11 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:59:36 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/13 13:53:19 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/13 17:53:17 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../cub3d.h"
 
 static	int	fill_words(char const *s, char c, char **split, size_t count)
 {

@@ -6,11 +6,12 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:51:07 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/13 13:53:02 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/13 18:19:21 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+
+#include"../cub3d.h"
 
 int	check_f(char *str, t_parse *parse, t_info *info)
 {
@@ -27,8 +28,8 @@ int	check_f(char *str, t_parse *parse, t_info *info)
 	parse->info->f_ok = 1;
 	i = skip_space(res);
 	j = i;
-	parse->info->f_color = ft_calloc(sizeof(char *), ft_strlen(res));
-	while (k < ft_strlen(res))
+	info->f_color = ft_calloc(sizeof(char *), ft_strlen(res));
+	while (k < (int)ft_strlen(res))
 	{
 		parse->info->f_color[k] = res[j];
 		k++;
@@ -53,8 +54,8 @@ int	check_c(char *str, t_parse *parse, t_info *info)
 	parse->info->c_ok = 1;
 	i = skip_space(res);
 	j = i;
-	parse->info->c_color = ft_calloc(sizeof(char *), ft_strlen(res));
-	while (k < ft_strlen(res))
+	info->c_color = ft_calloc(sizeof(char *), ft_strlen(res));
+	while (k < (int)ft_strlen(res))
 	{
 		parse->info->c_color[k] = res[j];
 		k++;

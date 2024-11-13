@@ -6,11 +6,11 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 15:51:10 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/13 16:00:56 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/13 17:52:35 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../cub3d.h"
 
 int	extension(char *av)
 {

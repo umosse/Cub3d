@@ -6,11 +6,11 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:31:20 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/13 13:53:13 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/13 17:42:22 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../cub3d.h"
 
 int	free_parse_args(t_parse *parse, int i)
 {

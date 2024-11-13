@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 13:56:10 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/22 23:55:55 by umosse           ###   ########.fr       */
+/*   Updated: 2024/11/13 18:28:06 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@ int	ft_mapread3(char *line, t_game *game, int fd)
 {
 	int	i;
 
+	i =0;
+	while (i < 6)
+	{
+		line = get_next_line(fd);
+		free(line);
+		i++;
+	}
+	line = get_next_line(fd);
 	i = 0;
 	while (line)
 	{
