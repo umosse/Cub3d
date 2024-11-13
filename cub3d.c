@@ -6,11 +6,12 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:00 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/08 14:52:49 by umosse           ###   ########.fr       */
+/*   Updated: 2024/11/13 18:31:35 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "parsing/parsing.h"
 
 int	ft_destroy(t_game *game)
 {
@@ -58,10 +59,13 @@ int	ft_xpm_to_image(t_game *game)
 	int		width;
 	int		height;
 
-	game->t_north = mlx_xpm_file_to_image(game->mlx, T_NORTH, &width, &height);
-	game->t_south = mlx_xpm_file_to_image(game->mlx, T_SOUTH, &width, &height);
-	game->t_west = mlx_xpm_file_to_image(game->mlx, T_WEST, &width, &height);
-	game->t_east = mlx_xpm_file_to_image(game->mlx, T_EAST, &width, &height);
+	load_no(game, game->parse);
+	load_so(game, game->parse);
+	load_we(game, game->parse);
+	load_ea(game, game->parse);
+	game->t_door = mlx_xpm_file_to_image(game->mlx, T_DOOR, &width, &height);
+	game->t_door = mlx_xpm_file_to_image(game->mlx, T_DOOR, &width, &height);
+	game->t_door = mlx_xpm_file_to_image(game->mlx, T_DOOR, &width, &height);
 	game->t_door = mlx_xpm_file_to_image(game->mlx, T_DOOR, &width, &height);
 	game->t_door2 = mlx_xpm_file_to_image(game->mlx, T_DOOR2, &width, &height);
 	game->t_door3 = mlx_xpm_file_to_image(game->mlx, T_DOOR3, &width, &height);
@@ -81,25 +85,49 @@ void	ft_setup(t_game *game)
 	game->playery = 4.5;
 }
 
-int	main(int argc, char **argv)
+int	main(int ac, char **av)
 {
+	int		fd;
 	t_game	game;
-
-	(void)argv;
+	
 	game = (t_game){0};
 	ft_setup(&game);
-	if (argc == 2)
+	game.parse = ft_calloc(sizeof(t_parse), 1);
+	game.parse->info = ft_calloc(sizeof(t_info), 1);
+	if (ac == 2)
 	{
-		ft_mapread(argv[1], &game);
-		game.mlx = mlx_init();
-		if (!game.mlx)
-			return (1);
-		game.win = mlx_new_window(game.mlx, W_LENGTH, W_HEIGHT, "cub3d");
-		ft_xpm_to_image(&game);
-		game.data.img = mlx_new_image(game.mlx, W_LENGTH, W_HEIGHT);
-		game.data.addr = mlx_get_data_addr(game.data.img,
+		if (check_file(av[1]) == 1)
+		{
+			game.parse->lines = ft_calloc(sizeof(char **), get_line(av[1]));
+			fd = open(av[1], O_RDONLY);
+			if (parse_args(game.parse, fd, av) == 0)
+			{
+				close(fd);
+				return (0);
+			}
+			close (fd);
+			ft_mapread(av[1], &game);
+			game.mlx = mlx_init();
+			if (!game.mlx)
+				return (1);
+			game.win = mlx_new_window(game.mlx, W_LENGTH, W_HEIGHT, "cub3d");
+			ft_xpm_to_image(&game);
+			game.data.img = mlx_new_image(game.mlx, W_LENGTH, W_HEIGHT);
+			game.data.addr = mlx_get_data_addr(game.data.img,
 				&game.data.bits_per_pixel,
 				&game.data.line_length, &game.data.endian);
-		ft_hooks(&game);
+			ft_hooks(&game);
+		}
+		else
+		{
+			printf("Error \nWrong file\n");
+			return  (0);
+		}
 	}
+	else
+	{
+		printf("Error \nWrong number of arg\n");
+		return (0);
+	}
+	return (1);
 }

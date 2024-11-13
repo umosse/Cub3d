@@ -6,14 +6,23 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:13:05 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/13 16:02:21 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/13 18:04:16 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
-# include "get_next_line.h"
+# include <stddef.h>
+# include <stdint.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <string.h>
+# include <stdarg.h>
+# include <limits.h>
+# include <math.h>
+# include <stdbool.h>
 
 typedef struct s_info
 {
@@ -42,7 +51,6 @@ typedef struct s_parse
 	t_info	*info;
 }			t_parse;
 
-void	ft_bzero(void *s, size_t n);
 int		skip_space(char *s);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp( const char *first, const char *second, size_t length);
@@ -58,4 +66,6 @@ char	**ft_split(char const *s, char c);
 int		ft_atoi(const char *str);
 int		count_symbol(char *str, char symbol);
 int		check_file(char *av);
+int		get_line(char *file);
+int		parse_args(t_parse *parse, int fd, char **av);
 #endif

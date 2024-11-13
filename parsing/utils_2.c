@@ -6,11 +6,11 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 18:17:22 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/13 13:56:17 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/13 17:51:53 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"parsing.h"
+#include"../cub3d.h"
 
 int	ft_atoi(const char *str)
 {

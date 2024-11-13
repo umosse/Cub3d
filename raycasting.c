@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 14:49:07 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/31 15:28:25 by umosse           ###   ########.fr       */
+/*   Updated: 2024/11/13 18:06:41 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	ft_topdown(t_game *game)
 	const int	s = W_LENGTH * W_HEIGHT;
 	int			i;
 
-	game->sky = P_CYAN;
-	game->floor = P_GREEN;
+	game->sky = game->parse->info->c;
+	game->floor = game->parse->info->f;
 	i = -1;
 	while (++i < s)
 	{

@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:24 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/08 14:36:29 by umosse           ###   ########.fr       */
+/*   Updated: 2024/11/13 18:05:06 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 # define CUB3D_H
 
+# include "parsing/parsing.h"
 # include "Libft/libft.h"
 # include "minilibx-linux/mlx.h"
 # include "minilibx-linux/mlx_int.h"
@@ -125,6 +126,7 @@ typedef struct s_game
 	int				mouse;
 	int				mousex;
 	int				mousey;
+	t_parse			*parse;
 }	t_game;
 
 //cub3d.c
@@ -174,5 +176,13 @@ int		ft_mapread3(char *line, t_game *game, int fd);
 //maptest.c
 char	**ft_mapalloc(char *file, t_game *game);
 char	**ft_mapread(char *file, t_game *game);
+
+
+
+
+int	load_no(t_game *game, t_parse *parse);
+int	load_so(t_game *game, t_parse *parse);
+int	load_we(t_game *game, t_parse *parse);
+int	load_ea(t_game *game, t_parse *parse);
 
 #endif
