@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:00 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/13 18:31:35 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:16:43 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int	main(int ac, char **av)
 				&game.data.bits_per_pixel,
 				&game.data.line_length, &game.data.endian);
 			ft_hooks(&game);
+			close (fd);
 		}
 		else
 		{

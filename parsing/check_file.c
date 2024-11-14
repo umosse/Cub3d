@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 15:51:10 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/13 17:52:35 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:24:18 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,15 @@ int	check_file(char *av)
 		i = open(av, O_RDONLY);
 		j = open(av, O_DIRECTORY);
 		if (i != -1 && j == -1)
+		{
+			close (i);
 			return (1);
+		}
 		else
+		{
+			close (j);
 			return (0);
+		}
 	}
 	else
 		return (0);
