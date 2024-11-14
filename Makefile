@@ -6,14 +6,14 @@
 #    By: umosse <umosse@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/04 12:53:11 by umosse            #+#    #+#              #
-#    Updated: 2024/11/13 18:20:19 by aroualid         ###   ########.fr        #
+#    Updated: 2024/11/14 16:33:38 by aroualid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 NAME = cub3d
 NAME_BONUS = 
-SRCS = cub3d.c cub3dutils.c movement.c movementutils.c raycasting.c raycast_utils.c maptest.c parsing/textures.c parsing/utils_1.c parsing/free_parsing.c parsing/utils_2.c parsing/convert_rgb.c parsing/check_file.c parsing/check_path.c parsing/ft_split.c parsing/main.c
+SRCS = cub3d.c cub3dutils.c movement.c movementutils.c raycasting.c raycast_utils.c maptest.c parsing/textures.c parsing/utils_1.c parsing/free_parsing.c parsing/utils_2.c parsing/convert_rgb.c parsing/check_file.c parsing/check_path.c parsing/ft_split.c parsing/main.c parsing/fill_map.c
 
 SRCS_BONUS = 
 OBJS = $(SRCS:.c=.o)

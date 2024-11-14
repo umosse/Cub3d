@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:36:01 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/13 18:01:46 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:47:02 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	parse_args(t_parse *parse, int fd, char **av)
 	int	k;
 
 	i = 0;
+	
 	while (i < get_line(av[1]))
 	{
 		k = 0;
@@ -87,6 +88,15 @@ int	parse_args(t_parse *parse, int fd, char **av)
 		}
 		if (check_id(parse->temp, parse) == 0)
 			return (free_parse_args(parse, i));
+		else
+		{
+			if (is_all_fill(parse) == 1)
+			{
+				parse->last = i + 1;
+				check_map(parse, fd, av[1]);
+				return (1);	
+			}
+		}
 		free_parse_args(parse, i);
 		i++;
 	}

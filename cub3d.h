@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:24 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/13 18:05:06 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:14:02 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@
 # define T_DOOR3 "textures/door3.xpm"
 # define T_DOOR4 "textures/door4.xpm"
 
-typedef struct s_data {
+typedef struct s_data 
+{
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
