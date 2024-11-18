@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:36:01 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/14 17:47:02 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:07:54 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,10 @@ int	parse_args(t_parse *parse, int fd, char **av)
 	int	i;
 	int	j;
 	int	k;
-
+	int v;
 	i = 0;
 	
+	v = get_line(av[1]);
 	while (i < get_line(av[1]))
 	{
 		k = 0;
@@ -93,7 +94,18 @@ int	parse_args(t_parse *parse, int fd, char **av)
 			if (is_all_fill(parse) == 1)
 			{
 				parse->last = i + 1;
-				check_map(parse, fd, av[1]);
+				if (check_map(parse, fd, av[1]) == 1)
+				{
+					fill_map(parse, v, fd);
+					new_map(parse);
+					printf("max x = %d\n", parse->max_x);
+					printf("max y = %i\n", parse->max_y);
+					for (int l = 0; parse->map_square[l]; l++)
+					{
+						printf("%s\n", parse->map_square[l]);
+					}
+					exit (0);
+				}
 				return (1);	
 			}
 		}
