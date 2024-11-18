@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:13:05 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/14 17:45:22 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:21:09 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,14 @@ typedef struct s_parse
 	char	**lines;
 	char	*temp;
 	int		last;
+	int		first_line;
+	char	**map;
+	char	**map_square;
+	int		max_x;
+	int		max_y;
+	int		player_x;
+	int		player_y;
+	char	orientation;
 	t_info	*info;
 }			t_parse;
 
@@ -69,7 +77,14 @@ int		count_symbol(char *str, char symbol);
 int		check_file(char *av);
 int		get_line(char *file);
 int		parse_args(t_parse *parse, int fd, char **av);
-void	check_map(t_parse *parse, int fd, char *av);
+int		check_map(t_parse *parse, int fd, char *av);
 int		is_all_fill(t_parse *parse);
-
+int		isspace(int c);
+int		is_ok(char str);
+void	fill_map(t_parse *parse, int max, int fd);		
+void	max_map(t_parse *parse);
+int		check_wall(t_parse *parse, int x, int y);
+int		find_direction(t_parse *parse);
+void	find_player_pos(t_parse *parse);
+void	new_map(t_parse *parse);
 #endif
