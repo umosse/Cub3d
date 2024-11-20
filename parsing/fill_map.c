@@ -6,14 +6,14 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:37:57 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/18 16:25:43 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/19 16:30:48 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 #include "parsing.h"
 
-int	isspace(int c)
+int	is_space(int c)
 {
 	if (c == ' ' || c == '\f' || c == '\n' || c == '\r'
 		|| c == '\t' || c == '\v')
@@ -43,7 +43,7 @@ void	new_map(t_parse *parse)
 		ft_memcpy(parse->map_square[i], parse->map[i], ft_strlen(parse->map[i]) - 1);
 		i++;
 	}
-	printf("%i\n", check_wall(parse, skip_space(parse->map_square[0]), 0 ));
+	printf("%i\n", check_map_ok(parse));
 }
 
 void	fill_map(t_parse *parse, int max, int fd)
@@ -74,7 +74,7 @@ void	fill_map(t_parse *parse, int max, int fd)
 			parse->map[k] = ft_strdup(parse->lines[i]);
 		else
 		{
-			printf("Error\nMap Invalid\n");
+			printf("Error\nMap Invalid2\n");
 			return ;
 		}
 		free_parse_args(parse, i);
@@ -98,7 +98,7 @@ int	first_line(t_parse *parse, int i)
 	while (parse->lines[i][k])
 	{
 		if (parse->lines[i][k] == '1'
-			|| isspace(parse->lines[i][k]) == 1)
+			|| is_space(parse->lines[i][k]) == 1)
 			j++;
 		k++;
 

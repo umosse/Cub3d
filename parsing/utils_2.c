@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 18:17:22 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/18 16:26:00 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:10:45 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	count_symbol(char *str, char symbol)
 int	is_ok(char str)
 {
 
-	if (isspace(str) == 1 || str == '1' || str == '0'
+	if (str == ' ' || str == '\n' || str == '1' || str == '0'
 		|| str == 'N' || str == 'S' || str == 'E' || str == 'W'
 		|| str == 'D')
 		return (1);
@@ -113,6 +113,7 @@ void	find_player_pos(t_parse *parse)
 				parse->player_x = j;
 				parse->player_y = i;
 				parse->orientation = str[j];
+				parse->map[i][j] = '0';
 			}
 			j++;
 		}
@@ -144,20 +145,72 @@ void	max_map(t_parse *parse)
 	parse->max_y = i;
 }
 
-int	check_wall(t_parse *parse, int x, int y)
+int	check_first_last_wall(t_parse *parse)
 {
-	if (x < 0 || x >= parse->max_x || y < 0 || y >= parse->max_y)
-		return (0);
-	if (parse->map_square[y][x] == '1' || parse->map_square[y][x] == '2')
-		;
-	if (parse->map_square[y][x] == ' ')
-		return(0);
-	else
-		return (0);
-	parse->map_square[y][x] = '2';
-	check_wall(parse, x + 1, y);
-	check_wall(parse, x - 1, y);
-	check_wall(parse, x, y + 1);
-	check_wall(parse, x, y - 1);
+	int	i;
+	int	j;
+	int	k;
+
+	i = 0;
+	while(i < parse->max_y)
+	{
+		j = skip_space(parse->map_square[i]);
+		k = skip_space_reverse(parse->map_square[i]);
+		if (parse->map_square[i][j] == '1')
+		{
+			if (parse->map_square[i][k] == '1')
+				i++;
+			else
+				return (0);
+		}
+		else
+			return (0);
+	}
+	return (1);
+}
+
+int	check_around(t_parse *parse, int j, int i)
+{
+	if ((i > 0 && i < parse->max_y) && (j > 0 && j < parse->max_x))
+	{
+		if (parse->map_square[i][j + 1] && parse->map_square[i][j + 1] == ' ')
+			return (2);
+		if (parse->map_square[i][j - 1] && parse->map_square[i][j - 1] == ' ')
+			return (3);
+		if (parse->map_square[i + 1][j] && parse->map_square[i + 1][j] == ' ')
+			return (4);
+		if (parse->map_square[i - 1][j] && parse->map_square[i - 1][j] == ' ')
+			return (5);
+	}
+	return (1);
+}
+
+int	check_map_ok(t_parse *parse)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	i = 0;
+	while (i < parse->max_y)
+	{
+		j = skip_space(parse->map_square[i]);
+		k = skip_space_reverse(parse->map_square[i]);
+		while (j  < k)
+		{
+			if (parse->map_square[i][j] == '0'
+			|| parse->map_square[i][j] == 'D'
+			|| (j == parse->player_x && i == parse->player_y))
+			{
+				if (check_around(parse, j, i) == 1)
+					j++;
+				else
+					return (check_around(parse, j, i));
+			}
+			else
+				j++;
+		}
+		i++;
+	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:36:01 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/18 16:07:54 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:12:29 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	parse_args(t_parse *parse, int fd, char **av)
 					{
 						printf("%s\n", parse->map_square[l]);
 					}
-					exit (0);
+				parse->map[(int)parse->player_y][(int)parse->player_x] = '0';
 				}
 				return (1);	
 			}

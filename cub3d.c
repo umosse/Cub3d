@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:00 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/28 11:50:21 by umosse           ###   ########.fr       */
+/*   Updated: 2024/11/28 11:50:40 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ void	ft_setup(t_game *game)
 	game->dirx = 0;
 	game->diry = 1;
 	game->planex = 0.85;
-	game->planey = 0.0;
-	game->playerx = 15.5;
-	game->playery = 4.5;
+	game->planey = 0;
+	game->playerx = game->parse->player_x;
+	game->playery = game->parse->player_y;
 }
 
 int	main(int ac, char **av)
@@ -91,7 +91,6 @@ int	main(int ac, char **av)
 	t_game	game;
 	
 	game = (t_game){0};
-	ft_setup(&game);
 	game.parse = ft_calloc(sizeof(t_parse), 1);
 	game.parse->info = ft_calloc(sizeof(t_info), 1);
 	if (ac == 2)
@@ -105,6 +104,7 @@ int	main(int ac, char **av)
 				close(fd);
 				return (0);
 			}
+			ft_setup(&game);
 			close (fd);
 			ft_mapread(av[1], &game);
 			game.mlx = mlx_init();

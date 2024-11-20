@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 13:56:10 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/13 18:28:06 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/19 16:57:27 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_mapread3(char *line, t_game *game, int fd)
 		game->map[i] = line;
 		game->maptest[i] = ft_strdup(line);
 		game->maxmapx = ft_strlen(game->map[0]);
-		if ((int)ft_strlen(game->map[i]) != game->maxmapx || game->maxmapx > 25)
+		if ((int)ft_strlen(game->map[i]) != game->maxmapx)
 		{
 			ft_mapread2(fd, line);
 			return (-1);
@@ -53,22 +53,8 @@ int	ft_mapread3(char *line, t_game *game, int fd)
 
 char	**ft_mapread(char *file, t_game *game)
 {
-	int		fd;
-	char	*line;
-	int		i;
-
-	game->map = ft_mapalloc(file, game);
-	i = 0;
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		return (NULL);
-	line = get_next_line(fd);
-	if (!line)
-		return (NULL);
-	i = ft_mapread3(line, game, fd);
-	close(fd);
-	if (i > 12 || i == -1)
-		return (NULL);
+	(void) file;
+	game->map = game->parse->map;
 	return (game->map);
 }
 

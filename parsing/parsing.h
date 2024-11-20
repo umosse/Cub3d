@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:13:05 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/18 16:21:09 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:01:28 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,14 @@ typedef struct s_parse
 	char	**map_square;
 	int		max_x;
 	int		max_y;
-	int		player_x;
-	int		player_y;
+	double	player_x;
+	double	player_y;
 	char	orientation;
 	t_info	*info;
 }			t_parse;
 
 int		skip_space(char *s);
+int		skip_space_reverse(char *s);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp( const char *first, const char *second, size_t length);
 int		free_parse_args(t_parse *parse, int i);
@@ -79,12 +80,17 @@ int		get_line(char *file);
 int		parse_args(t_parse *parse, int fd, char **av);
 int		check_map(t_parse *parse, int fd, char *av);
 int		is_all_fill(t_parse *parse);
-int		isspace(int c);
+int		is_space(int c);
 int		is_ok(char str);
 void	fill_map(t_parse *parse, int max, int fd);		
 void	max_map(t_parse *parse);
-int		check_wall(t_parse *parse, int x, int y);
+int		check_first_last_wall(t_parse *parse);
 int		find_direction(t_parse *parse);
 void	find_player_pos(t_parse *parse);
 void	new_map(t_parse *parse);
+void	free_split(char **split);
+int		check_map_ok(t_parse *parse);
+char	*replace_tab_by_space(char *str);
+
+
 #endif
