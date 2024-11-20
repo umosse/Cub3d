@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:31:20 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/13 17:42:22 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/19 11:25:15 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,14 @@ int	free_parse_args(t_parse *parse, int i)
 	free (parse->temp);
 	free(parse->lines[i]);
 	return (0);
+}
+
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+		free(split[i++]);
+	free(split);
 }
