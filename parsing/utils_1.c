@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:24:49 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/19 15:38:43 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:07:11 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	skip_space_reverse(char *s)
 	i = ft_strlen(s) - 1;
 	while (s[i] && (s[i] == ' ' || (s[i] >= '\t' && s[i] <= '\r')))
 		i--;
-	return (i); 
+	return (i);
 }
 
 int	ft_putchar(char c)
@@ -54,31 +54,42 @@ int	ft_putchar(char c)
 	return (1);
 }
 
-char *replace_tab_by_space(char *str)
+char	*fill_space(char *res, int k)
+{
+	int	j;
+
+	j = 0;
+	while (j < 4)
+	{
+		res[k] = ' ';
+		j++;
+		k++;
+	}
+	return (res);
+}
+
+char	*replace_tab_by_space(char *str)
 {
 	int		i;
 	int		k;
-	int		j;
 	char	*res;
 
-	res = ft_calloc(sizeof(char),(ft_strlen(str) + (count_symbol(str, '\t') * 4)));
+	res = ft_calloc(sizeof(char),
+			(ft_strlen(str) + (count_symbol(str, '\t') * 4)));
 	i = 0;
 	k = 0;
 	while (str[i])
 	{
 		if (str[i] == '\t')
 		{
-			j = 0;
-			while (j < 4)
-			{
-				res[k] = ' ';
-				j++;
-				k++;
-			}
+			res = fill_space(res, k);
+			k += 4;
 		}
 		else
+		{
 			res[k] = str[i];
-		k++;
+			k++;
+		}
 		i++;
 	}
 	return (res);

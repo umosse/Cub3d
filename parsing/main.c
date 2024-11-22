@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:36:01 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/19 17:12:29 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:13:11 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,53 +66,62 @@ int	check_fill(t_parse *parse)
 	return (1);
 }
 
+void	check_line(t_parse *parse, int i, int j, int k)
+{
+	while (parse->lines[i][j] && parse->lines[i][j] != '\n')
+	{	
+		parse->temp[k] = parse->lines[i][j];
+		j++;
+		k++;
+	}
+}
+
+//					printf("max x = %d\n", parse->max_x);
+//					printf("max y = %i\n", parse->max_y);
+//					for (int l = 0; parse->map_square[l]; l++)
+//					{
+//						printf("%s\n", parse->map_square[l]);
+//					}
+
+int	fill_ok(t_parse *parse, int fd, char *av, int i)
+{
+	if (is_all_fill(parse) == 1)
+	{
+		parse->last = i + 1;
+		if (check_map(parse, fd, av) == 1)
+		{
+			fill_map(parse, get_line(av), fd);
+			new_map(parse);
+		parse->map[(int)parse->player_y][(int)parse->player_x] = '0';
+		}
+		return (1);
+	}
+	return (0);
+}
+
 int	parse_args(t_parse *parse, int fd, char **av)
 {
 	int	i;
 	int	j;
 	int	k;
-	int v;
+
 	i = 0;
-	
-	v = get_line(av[1]);
 	while (i < get_line(av[1]))
 	{
 		k = 0;
 		parse->lines[i] = get_next_line(fd);
 		j = skip_space(parse->lines[i]);
 		parse->temp = ft_calloc(sizeof(char), ft_strlen(parse->lines[i]) + 1);
-		while (parse->lines[i][j] && parse->lines[i][j] != '\n')
-		{
-			parse->temp[k] = parse->lines[i][j];
-			j++;
-			k++;
-		}
+		check_line(parse, i, j, k);
 		if (check_id(parse->temp, parse) == 0)
 			return (free_parse_args(parse, i));
 		else
 		{
-			if (is_all_fill(parse) == 1)
-			{
-				parse->last = i + 1;
-				if (check_map(parse, fd, av[1]) == 1)
-				{
-					fill_map(parse, v, fd);
-					new_map(parse);
-					printf("max x = %d\n", parse->max_x);
-					printf("max y = %i\n", parse->max_y);
-					for (int l = 0; parse->map_square[l]; l++)
-					{
-						printf("%s\n", parse->map_square[l]);
-					}
-				parse->map[(int)parse->player_y][(int)parse->player_x] = '0';
-				}
-				return (1);	
-			}
+			if (fill_ok(parse, fd, av[1], i) == 1)
+				return (1);
 		}
 		free_parse_args(parse, i);
 		i++;
 	}
-	return (check_fill(parse));
+	return (0);
 }
-
-

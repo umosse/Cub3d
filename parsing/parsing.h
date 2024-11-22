@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:13:05 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/19 17:01:28 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/22 15:53:38 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,5 @@ void	new_map(t_parse *parse);
 void	free_split(char **split);
 int		check_map_ok(t_parse *parse);
 char	*replace_tab_by_space(char *str);
-
 
 #endif

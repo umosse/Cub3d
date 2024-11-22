@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 18:17:22 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/19 17:10:45 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/22 15:43:25 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,9 @@ int	count_symbol(char *str, char symbol)
 
 int	is_ok(char str)
 {
-
-	if (str == ' ' || str == '\n' || str == '1' || str == '0'
+	if (is_space(str) == 1 || str == '1' || str == '0'
 		|| str == 'N' || str == 'S' || str == 'E' || str == 'W'
-		|| str == 'D')
+		|| str == 'D' || str == 'O')
 		return (1);
 	return (0);
 }
@@ -84,7 +83,7 @@ int	find_direction(t_parse *parse)
 		while (str[j] != '\n')
 		{
 			if (str[j] == 'N' || str[j] == 'S' || str[j] == 'E'
-				|| str[j] == 'W') 
+				|| str[j] == 'W')
 				res++;
 			j++;
 		}
@@ -108,7 +107,7 @@ void	find_player_pos(t_parse *parse)
 		while (str[j] != '\n')
 		{
 			if (str[j] == 'N' || str[j] == 'S' || str[j] == 'E'
-				|| str[j] == 'W') 
+				|| str[j] == 'W')
 			{
 				parse->player_x = j;
 				parse->player_y = i;
@@ -121,7 +120,6 @@ void	find_player_pos(t_parse *parse)
 		j = 0;
 	}
 }
-
 
 void	max_map(t_parse *parse)
 {
@@ -152,7 +150,7 @@ int	check_first_last_wall(t_parse *parse)
 	int	k;
 
 	i = 0;
-	while(i < parse->max_y)
+	while (i < parse->max_y)
 	{
 		j = skip_space(parse->map_square[i]);
 		k = skip_space_reverse(parse->map_square[i]);
@@ -196,19 +194,16 @@ int	check_map_ok(t_parse *parse)
 	{
 		j = skip_space(parse->map_square[i]);
 		k = skip_space_reverse(parse->map_square[i]);
-		while (j  < k)
+		while (j < k)
 		{
 			if (parse->map_square[i][j] == '0'
 			|| parse->map_square[i][j] == 'D'
 			|| (j == parse->player_x && i == parse->player_y))
 			{
-				if (check_around(parse, j, i) == 1)
-					j++;
-				else
+				if (check_around(parse, j, i) != 1)
 					return (check_around(parse, j, i));
 			}
-			else
-				j++;
+			j++;
 		}
 		i++;
 	}
