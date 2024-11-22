@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:00 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/28 11:50:40 by umosse           ###   ########.fr       */
+/*   Updated: 2024/11/28 11:50:45 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ void	ft_setup(t_game *game)
 	game->diry = 1;
 	game->planex = 0.85;
 	game->planey = 0;
-	game->playerx = game->parse->player_x;
-	game->playery = game->parse->player_y;
+	game->playerx = game->parse->player_x + 0.5;
+	game->playery = game->parse->player_y + 0.5;
 }
 
 int	main(int ac, char **av)
@@ -117,7 +117,6 @@ int	main(int ac, char **av)
 				&game.data.bits_per_pixel,
 				&game.data.line_length, &game.data.endian);
 			ft_hooks(&game);
-			close (fd);
 		}
 		else
 		{

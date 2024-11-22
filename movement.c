@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:44:01 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/21 17:42:55 by umosse           ###   ########.fr       */
+/*   Updated: 2024/11/28 11:51:16 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	ft_door(t_game *game)
 		else if (game->map[(int)(game->playery + game->diry
 				* game->movespeed * 90)][(int)game->playerx] == 'D')
 			game->map[(int)(game->playery + game->diry
-					* game->movespeed * 9)][(int)game->playerx] = 'O';
+					* game->movespeed * 90)][(int)game->playerx] = 'O';
 		else if (game->map[(int)game->playery][(int)(game->playerx
 			+ game->dirx * game->movespeed * 90)] == 'O')
 			game->map[(int)game->playery][(int)(game->playerx
@@ -100,8 +100,8 @@ void	ft_movement2(t_game *game)
 				game->map[(int)game->playery][(int)(game->playerx
 				- game->dirx * game->movespeed - 0.1)] == 'O')
 			game->playerx -= game->dirx * game->movespeed;
-		if (game->map[(int)(game->playery - game->dirx
-				* game->movespeed - 0.1)][(int)game->playerx] == '0' ||
+		if (game->map[(int)(game->playery - game->diry
+				* game->movespeed)][(int)game->playerx] == '0' ||
 				game->map[(int)(game->playery - game->dirx
 					* game->movespeed - 0.1)][(int)game->playerx] == 'O')
 			game->playery -= game->diry * game->movespeed;

@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:07:40 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/13 18:12:10 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/22 11:32:20 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,3 @@ int	load_ea(t_game *game, t_parse *parse)
 		return (0);
 	return (1);
 }
-
-
