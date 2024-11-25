@@ -17,23 +17,23 @@ void	ft_lateral(t_game *game)
 	if (game->a == 1)
 	{
 		if (game->map[(int)game->playery][(int)(game->playerx - game->diry
-			* game->movespeed)] == '0' ||
+			* game->movespeed * 10)] == '0' ||
 				game->map[(int)game->playery][(int)(game->playerx - game->diry
-				* game->movespeed)] == 'O')
+				* game->movespeed * 10)] == 'O')
 			game->playerx -= game->diry * game->movespeed;
 		if (game->map[(int)(game->playery + game->dirx
-				* game->movespeed)][(int)game->playerx] == '0' ||
+				* game->movespeed * 10)][(int)game->playerx] == '0' ||
 				game->map[(int)(game->playery + game->dirx
-				* game->movespeed)][(int)game->playerx] == 'O')
+				* game->movespeed * 10)][(int)game->playerx] == 'O')
 			game->playery += game->dirx * game->movespeed;
 	}
 	if (game->d == 1)
 	{
 		if (game->map[(int)game->playery][(int)(game->playerx + game->diry
-			* game->movespeed)] == '0')
+			* game->movespeed * 10)] == '0')
 			game->playerx += game->diry * game->movespeed;
 		if (game->map[(int)(game->playery - game->dirx
-				* game->movespeed)][(int)game->playerx] == '0')
+				* game->movespeed * 10)][(int)game->playerx] == '0')
 			game->playery -= game->dirx * game->movespeed;
 	}
 }
@@ -96,14 +96,14 @@ void	ft_movement2(t_game *game)
 	if (game->s == 1)
 	{
 		if (game->map[(int)game->playery][(int)(game->playerx
-			- game->dirx * game->movespeed)] == '0' ||
+			- game->dirx * game->movespeed * 10)] == '0' ||
 				game->map[(int)game->playery][(int)(game->playerx
-				- game->dirx * game->movespeed)] == 'O')
+				- game->diry * game->movespeed * 10)] == 'O')
 			game->playerx -= game->dirx * game->movespeed;
 		if (game->map[(int)(game->playery - game->diry
-				* game->movespeed)][(int)game->playerx] == '0' ||
-				game->map[(int)(game->playery - game->dirx
-					* game->movespeed)][(int)game->playerx] == 'O')
+				* game->movespeed * 10)][(int)game->playerx] == '0' ||
+				game->map[(int)(game->playery - game->diry
+					* game->movespeed * 10)][(int)game->playerx] == 'O')
 			game->playery -= game->diry * game->movespeed;
 	}
 }
@@ -118,14 +118,14 @@ void	ft_movement(t_game *game)
 	if (game->w == 1)
 	{
 		if (game->map[(int)game->playery][(int)(game->playerx
-			+ game->dirx * game->movespeed)] == '0' ||
+			+ game->dirx * game->movespeed * 10)] == '0' ||
 				game->map[(int)game->playery][(int)(game->playerx
-					+ game->dirx * game->movespeed)] == 'O')
+					+ game->dirx * game->movespeed * 10)] == 'O')
 			game->playerx += game->dirx * game->movespeed;
 		if (game->map[(int)(game->playery + game->diry
-				* game->movespeed)][(int)game->playerx] == '0' ||
+				* game->movespeed * 10)][(int)game->playerx] == '0' ||
 				game->map[(int)(game->playery + game->diry
-					* game->movespeed)][(int)game->playerx] == 'O')
+					* game->movespeed * 10)][(int)game->playerx] == 'O')
 			game->playery += game->diry * game->movespeed;
 	}
 	ft_movement2(game);

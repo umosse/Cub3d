@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:37:57 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/22 16:18:36 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:46:14 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	new_map(t_parse *parse)
 	int	i;
 
 	i = 0;
-	parse->map_square = ft_calloc(sizeof(char *), parse->max_y + 1);
+	parse->map_square = ft_calloc(sizeof(char *), parse->max_y + 2);
 	while (i < parse->max_y)
 	{
 		parse->map_square[i] = ft_calloc(sizeof(char), parse->max_x);
@@ -44,11 +44,10 @@ void	new_map(t_parse *parse)
 			ft_strlen(parse->map[i]) - 1);
 		i++;
 	}
+	parse->map_square[i] = ft_calloc(sizeof(char), parse->max_x);
+	ft_memset(parse->map_square[parse->max_y], ' ', parse->max_x);
 	if (check_map_ok(parse) != 1)
-	{
-		printf("Error\nWrong Number of Player\n");
-		return ;
-	}
+		free_and_exit(parse, 1, "Error\nMap Invalid 3\n");
 }
 
 int	check_lines(t_parse *parse, int i, int j, int k)
@@ -73,10 +72,7 @@ int	check_lines(t_parse *parse, int i, int j, int k)
 		parse->map[k] = ft_strdup(parse->lines[i]);
 	}
 	else
-	{
-		printf("Error\nMap Invalid2\n");
-		return (0);
-	}
+		free_and_exit(parse, 1,"Error\nMap Invalid 1\n");
 	return (1);
 }
 
@@ -88,7 +84,7 @@ int	fill_map_lines(t_parse *parse, int max, int fd)
 
 	i = parse->first_line + 1;
 	k = 1;
-	while (i < max)
+	while (i < max )
 	{
 		parse->lines[i] = get_next_line(fd);
 		j = 0;
@@ -96,8 +92,9 @@ int	fill_map_lines(t_parse *parse, int max, int fd)
 		{
 			if (is_ok(parse->lines[i][j]) == 1)
 				j++;
-			else
-				return (printf("Error\nMap Invalid\n"), 0);
+			else if (is_ok(parse->lines[i][j]) == 0)
+				free_and_exit(parse, 1,"Error\nMap Invalid 2\n");
+
 		}
 		if (check_lines(parse, i, j, k) == 0)
 			return (0);
@@ -108,7 +105,7 @@ int	fill_map_lines(t_parse *parse, int max, int fd)
 	return (1);
 }
 
-void	fill_map(t_parse *parse,  int fd)
+void	fill_map(t_parse *parse, int max, int fd)
 {
 	parse->map = ft_calloc (sizeof(char *), (max - parse->first_line) + 1);
 	parse->map[0] = ft_strdup (parse->lines[parse->first_line]);
@@ -159,7 +156,6 @@ int	check_map(t_parse *parse, int fd, char *av)
 		{
 			return (1);
 		}
-		free_parse_args(parse, i);
 		i++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:07:40 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/22 11:32:20 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:02:38 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,17 @@ int	load_no(t_game *game, t_parse *parse)
 {
 	t_img	**ptr;
 
-	ptr = malloc(sizeof(t_img *) * 1);
+	ptr = malloc(sizeof(t_img ) * 1);
 	if (!ptr)
 		return (0);
 	ptr[0] = load_sprite(game->mlx, parse->info->no_path);
 	game->t_north = ptr[0];
 	if (ptr[0] == NULL)
+	{
+		free(ptr[0]);
+		free(ptr);
 		return (0);
+	}
 	return (1);
 }
 
@@ -41,13 +45,17 @@ int	load_so(t_game *game, t_parse *parse)
 {
 	t_img	**ptr;
 
-	ptr = malloc(sizeof(t_img *) * 1);
+	ptr = malloc(sizeof(t_img ) * 1);
 	if (!ptr)
 		return (0);
 	ptr[0] = load_sprite(game->mlx, parse->info->so_path);
 	game->t_south = ptr[0];
 	if (ptr[0] == NULL)
+	{
+		free(ptr[0]);
+		free(ptr);
 		return (0);
+	}
 	return (1);
 }
 
@@ -55,13 +63,17 @@ int	load_we(t_game *game, t_parse *parse)
 {
 	t_img	**ptr;
 
-	ptr = malloc(sizeof(t_img *) * 1);
+	ptr = malloc(sizeof(t_img ) * 1);
 	if (!ptr)
 		return (0);
 	ptr[0] = load_sprite(game->mlx, parse->info->we_path);
 	game->t_west = ptr[0];
 	if (ptr[0] == NULL)
+	{
+		free(ptr[0]);
+		free(ptr);
 		return (0);
+	}
 	return (1);
 }
 
@@ -69,12 +81,16 @@ int	load_ea(t_game *game, t_parse *parse)
 {
 	t_img	**ptr;
 
-	ptr = malloc(sizeof(t_img *) * 1);
+	ptr = malloc(sizeof(t_img ) * 1);
 	if (!ptr)
 		return (0);
 	ptr[0] = load_sprite(game->mlx, parse->info->ea_path);
 	game->t_east = ptr[0];
 	if (ptr[0] == NULL)
+	{
+		free(ptr[0]);
+		free(ptr);
 		return (0);
+	}
 	return (1);
 }

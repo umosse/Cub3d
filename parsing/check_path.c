@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:51:13 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/13 18:18:58 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:20:22 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	check_no(char *str, t_parse *parse, t_info *info)
 	k = 0;
 	j = 2;
 	if (parse->info->no_ok == 1)
-		return (printf("Error\ntoo many NO \n"), 0);
+		free_and_exit(parse, 1, "Error\ntoo many NO \n");
 	res = new_string(str, 2);
 	info->no_ok = 1;
 	i = skip_space(res);
@@ -64,7 +64,7 @@ int	check_so(char *str, t_parse *parse, t_info *info)
 	k = 0;
 	j = 2;
 	if (parse->info->so_ok == 1)
-		return (printf("Error\ntoo many SO \n"), 0);
+		free_and_exit(parse, 1, "Error\ntoo many SO \n");
 	res = new_string(str, 2);
 	info->so_ok = 1;
 	i = skip_space(res);
@@ -90,7 +90,7 @@ int	check_we(char *str, t_parse *parse, t_info *info)
 	k = 0;
 	j = 2;
 	if (parse->info->we_ok == 1)
-		return (printf("Error\ntoo many WE \n"), 0);
+		free_and_exit(parse, 1, "Error\ntoo many WE \n");
 	res = new_string(str, 2);
 	info->we_ok = 1;
 	i = skip_space(res);
@@ -116,7 +116,7 @@ int	check_ea(char *str, t_parse *parse, t_info *info)
 	k = 0;
 	j = 2;
 	if (parse->info->ea_ok == 1)
-		return (printf("Error\ntoo many EA \n"), 0);
+		free_and_exit(parse, 1, "Error\ntoo many EA \n");
 	res = new_string(str, 2);
 	info->ea_ok = 1;
 	i = skip_space(res);

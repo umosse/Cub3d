@@ -6,11 +6,12 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:51:07 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/22 12:16:10 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:18:05 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../cub3d.h"
+#include "parsing.h"
 
 int	check_f(char *str, t_parse *parse, t_info *info)
 {
@@ -22,7 +23,7 @@ int	check_f(char *str, t_parse *parse, t_info *info)
 	k = 0;
 	j = 1;
 	if (parse->info->f_ok == 1)
-		return (printf("Error\ntoo many F \n"), 0);
+		free_and_exit(parse, 1, "Error\ntoo many F \n");
 	res = new_string(str, 1);
 	parse->info->f_ok = 1;
 	i = skip_space(res);
@@ -48,7 +49,7 @@ int	check_c(char *str, t_parse *parse, t_info *info)
 	k = 0;
 	j = 1;
 	if (parse->info->c_ok == 1)
-		return (printf("Error\ntoo many C \n"), 0);
+		free_and_exit(parse, 1, "Error\ntoo many C \n");
 	res = new_string(str, 1);
 	parse->info->c_ok = 1;
 	i = skip_space(res);
@@ -96,7 +97,7 @@ int	convert_f(char *str, t_parse *parse, t_info *info)
 			info->f = get_color(r, g, b);
 		}
 		else
-			return (printf("Error\nBad args in F\n"), 0);
+		free_and_exit(parse, 1, "Error\nBad args in F\n");
 	}
 	else
 		return (0);
@@ -124,7 +125,7 @@ int	convert_c(char *str, t_parse *parse, t_info *info)
 				info->c = get_color(r, g, b);
 		}
 		else
-			return (printf("Error\nBad args in C\n"), 0);
+			free_and_exit(parse, 1, "Error\nBad args in C\n");
 	}
 	else
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:36:01 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/22 16:13:11 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:21:36 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,17 @@ int	check_id(char *str, t_parse *parse)
 int	check_fill(t_parse *parse)
 {
 	if (parse->info->no_path == NULL)
-		return (printf("Error \nNo north texture\n"), 0);
+		free_and_exit(parse, 1,"Error \nNo north texture\n");
 	if (parse->info->so_path == NULL)
-		return (printf("Error \nNo south texture\n"), 0);
+		free_and_exit(parse, 1,"Error \nNo south texture\n");
 	if (parse->info->we_path == NULL)
-		return (printf("Error \nNo west texture\n"), 0);
+		free_and_exit(parse, 1,"Error \nNo west texture\n");
 	if (parse->info->ea_path == NULL)
-		return (printf("Error \nNo east texture\n"), 0);
+		free_and_exit(parse, 1,"Error \nNo east texture\n");
 	if (parse->info->f_color == NULL)
-		return (printf("Error \nNo floor color\n"), 0);
+		free_and_exit(parse, 1,"Error \nNo floor color\n");
 	if (parse->info->c_color == NULL)
-		return (printf("Error \nNo ceiling color\n"), 0);
+		free_and_exit(parse, 1,"Error \nNo ceiling color\n");
 	return (1);
 }
 

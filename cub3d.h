@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:24 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/14 17:14:02 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:27:23 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,9 +181,9 @@ char	**ft_mapread(char *file, t_game *game);
 
 
 
-int	load_no(t_game *game, t_parse *parse);
-int	load_so(t_game *game, t_parse *parse);
-int	load_we(t_game *game, t_parse *parse);
-int	load_ea(t_game *game, t_parse *parse);
-
+int		load_no(t_game *game, t_parse *parse);
+int		load_so(t_game *game, t_parse *parse);
+int		load_we(t_game *game, t_parse *parse);
+int		load_ea(t_game *game, t_parse *parse);
+void	free_game(t_game *game, t_parse *parse, int print, char *str);
 #endif

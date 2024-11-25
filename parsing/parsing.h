@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:13:05 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/22 15:53:38 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:25:33 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_info
 
 typedef struct s_parse
 {
+	char	*av;
 	char	**lines;
 	char	*temp;
 	int		last;
@@ -57,6 +58,7 @@ typedef struct s_parse
 	double	player_x;
 	double	player_y;
 	char	orientation;
+	int		fd;
 	t_info	*info;
 }			t_parse;
 
@@ -91,5 +93,8 @@ void	new_map(t_parse *parse);
 void	free_split(char **split);
 int		check_map_ok(t_parse *parse);
 char	*replace_tab_by_space(char *str);
+void	free_and_exit(t_parse *parse, int print, char *str);
+void	free_info(t_info *info);
+void	free_lines(t_parse *parse);
 
 #endif
