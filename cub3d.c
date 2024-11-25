@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:00 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/28 11:50:45 by umosse           ###   ########.fr       */
+/*   Updated: 2024/11/28 11:51:43 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,14 @@ int	ft_xpm_to_image(t_game *game)
 	int		width;
 	int		height;
 
-	load_no(game, game->parse);
-	load_so(game, game->parse);
-	load_we(game, game->parse);
-	load_ea(game, game->parse);
+	if (load_no(game, game->parse) == 0)
+		free_game(game, game->parse, 1, "Error\nInvalid NO texture\n");
+	if (load_so(game, game->parse) == 0)
+		free_game(game, game->parse, 1, "Error\nInvalid SO texture\n");
+	if (load_we(game, game->parse) == 0)
+		free_game(game, game->parse, 1, "Error\nInvalid WE texture\n");
+	if (load_ea(game, game->parse) == 0)
+		free_game(game, game->parse, 1, "Error\nInvalid EA texture\n");
 	game->t_door = mlx_xpm_file_to_image(game->mlx, T_DOOR, &width, &height);
 	game->t_door = mlx_xpm_file_to_image(game->mlx, T_DOOR, &width, &height);
 	game->t_door = mlx_xpm_file_to_image(game->mlx, T_DOOR, &width, &height);
@@ -87,7 +91,6 @@ void	ft_setup(t_game *game)
 
 int	main(int ac, char **av)
 {
-	int		fd;
 	t_game	game;
 	
 	game = (t_game){0};
@@ -97,37 +100,33 @@ int	main(int ac, char **av)
 	{
 		if (check_file(av[1]) == 1)
 		{
+			game.parse->av = ft_strdup(av[1]);
 			game.parse->lines = ft_calloc(sizeof(char **), get_line(av[1]));
-			fd = open(av[1], O_RDONLY);
-			if (parse_args(game.parse, fd, av) == 0)
+			game.parse->fd = open(av[1], O_RDONLY);
+			if (parse_args(game.parse, game.parse->fd, av) == 0)
 			{
-				close(fd);
+				close(game.parse->fd);
 				return (0);
 			}
 			ft_setup(&game);
-			close (fd);
+			close (game.parse->fd);
 			ft_mapread(av[1], &game);
 			game.mlx = mlx_init();
 			if (!game.mlx)
 				return (1);
-			game.win = mlx_new_window(game.mlx, W_LENGTH, W_HEIGHT, "cub3d");
 			ft_xpm_to_image(&game);
+			game.win = mlx_new_window(game.mlx, W_LENGTH, W_HEIGHT, "cub3d");
 			game.data.img = mlx_new_image(game.mlx, W_LENGTH, W_HEIGHT);
 			game.data.addr = mlx_get_data_addr(game.data.img,
 				&game.data.bits_per_pixel,
 				&game.data.line_length, &game.data.endian);
 			ft_hooks(&game);
+			free_game(&game, game.parse, 0, "");
 		}
 		else
-		{
-			printf("Error \nWrong file\n");
-			return  (0);
-		}
+			free_and_exit(game.parse, 1, "Error \nWrong file\n");
 	}
 	else
-	{
-		printf("Error \nWrong number of arg\n");
-		return (0);
-	}
+		free_and_exit(game.parse, 1, "Error \nWrong number of arg\n");
 	return (1);
 }
