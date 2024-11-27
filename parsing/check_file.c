@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 15:51:10 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/14 15:24:18 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/27 11:43:56 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,11 @@ int	check_file(char *av)
 			close (i);
 			return (1);
 		}
-		else
+		else if (j != -1)
 		{
 			close (j);
 			return (0);
 		}
 	}
-	else
-		return (0);
+	return (0);
 }

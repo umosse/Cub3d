@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:07:40 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/25 15:02:38 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:19:42 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	load_no(t_game *game, t_parse *parse)
 		free(ptr);
 		return (0);
 	}
+	free (ptr);
 	return (1);
 }
 
@@ -56,6 +57,7 @@ int	load_so(t_game *game, t_parse *parse)
 		free(ptr);
 		return (0);
 	}
+	free (ptr);
 	return (1);
 }
 
@@ -74,6 +76,7 @@ int	load_we(t_game *game, t_parse *parse)
 		free(ptr);
 		return (0);
 	}
+	free (ptr);
 	return (1);
 }
 
@@ -92,5 +95,6 @@ int	load_ea(t_game *game, t_parse *parse)
 		free(ptr);
 		return (0);
 	}
+	free (ptr);
 	return (1);
 }

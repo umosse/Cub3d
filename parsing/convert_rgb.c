@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:51:07 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/25 12:18:05 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/27 10:57:47 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	convert_f(char *str, t_parse *parse, t_info *info)
 			info->f = get_color(r, g, b);
 		}
 		else
-		free_and_exit(parse, 1, "Error\nBad args in F\n");
+			free_and_exit(parse, 1, "Error\nBad args in F\n");
 	}
 	else
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 13:36:19 by aroualid          #+#    #+#             */
-/*   Updated: 2024/01/12 15:05:02 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/27 13:51:48 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@
 # include <sys/select.h>
 # include <bits/posix2_lim.h>
 # include <sys/types.h>
+# include "libft.h"
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
 
-size_t		ft_strlen(const char *s);
-void		*ft_calloc(size_t nmemb, size_t size);
-char		*ft_strchr(const char *s, int c);
-void		*ft_memcpy(void *dest, const void *src, size_t n);
 char		*get_next_line(int fd);
 
 #endif

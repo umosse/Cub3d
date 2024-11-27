@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:37:57 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/25 16:46:14 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/27 14:06:35 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,13 @@ int	check_lines(t_parse *parse, int i, int j, int k)
 	else if (j == (int)ft_strlen(parse->lines[i]))
 	{
 		j = 0;
+
 		while (parse->lines[i][j])
 		{
 			if (parse->lines[i][j] == '\t')
 			{
-				parse->lines[i] = replace_tab_by_space(parse->lines[i]);
-				break ;
+				parse->map[k] = replace_tab_by_space(parse->lines[i]);
+				return (1);
 			}
 			j++;
 		}
@@ -88,17 +89,14 @@ int	fill_map_lines(t_parse *parse, int max, int fd)
 	{
 		parse->lines[i] = get_next_line(fd);
 		j = 0;
-		while (parse->lines[i][j])
+		while (j < (int)ft_strlen(parse->lines[i]))
 		{
 			if (is_ok(parse->lines[i][j]) == 1)
 				j++;
 			else if (is_ok(parse->lines[i][j]) == 0)
 				free_and_exit(parse, 1,"Error\nMap Invalid 2\n");
-
 		}
-		if (check_lines(parse, i, j, k) == 0)
-			return (0);
-		free_parse_args(parse, i);
+		check_lines(parse, i, j, k);
 		i++;
 		k++;
 	}
