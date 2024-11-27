@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:24 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/25 14:27:23 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/27 18:04:36 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,9 @@ typedef struct s_game
 	t_img			*t_door2;
 	t_img			*t_door3;
 	t_img			*t_door4;
+	t_img			*black;
+	t_img			*blue;
+	t_img			*red;
 	int				framecount;
 	int				mouse;
 	int				mousex;
@@ -178,12 +181,10 @@ int		ft_mapread3(char *line, t_game *game, int fd);
 char	**ft_mapalloc(char *file, t_game *game);
 char	**ft_mapread(char *file, t_game *game);
 
-
-
-
 int		load_no(t_game *game, t_parse *parse);
 int		load_so(t_game *game, t_parse *parse);
 int		load_we(t_game *game, t_parse *parse);
 int		load_ea(t_game *game, t_parse *parse);
 void	free_game(t_game *game, t_parse *parse, int print, char *str);
+void	ft_minimap(t_game *game);
 #endif

@@ -1,0 +1,17 @@
+/* XPM */
+static char *red[] = {
+/* columns rows colors chars-per-pixel */
+"50 50 1 1 ",
+"  c #8A0303",
+/* pixels */
+"          ",
+"          ",
+"          ",
+"          ",
+"          ",
+"          ",
+"          ",
+"          ",
+"          ",
+"          "
+};

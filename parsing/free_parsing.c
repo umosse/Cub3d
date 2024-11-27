@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:31:20 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/25 16:54:24 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/27 13:36:25 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ void	free_split(char **split)
 
 	i = 0;
 	while (split[i])
-		free(split[i++]);
+	{
+		free(split[i]);
+		i++;
+	}
 	free(split);
 }
 
@@ -56,10 +59,13 @@ void	free_lines(t_parse *parse)
 	int	i;
 
 	i = 0;
-	while (parse->lines[i] != NULL)
+	while (i < get_line(parse->av))
 	{
-		free (parse->lines[i]);
-		parse->lines[i] = NULL;
+		if (parse->lines[i] != NULL)
+		{
+			free (parse->lines[i]);
+			parse->lines[i] = NULL;
+		}
 		i++;
 	}
 	free(parse->lines);
@@ -79,7 +85,7 @@ void	free_and_exit(t_parse *parse, int print, char *str)
 		free_info(parse->info);
 	if (parse->av != NULL)
 		free (parse->av);
-	if (parse->fd != 0)
+	if (parse->fd != -1)
 		close (parse->fd);
 	free(parse);
 	if (print == 1)

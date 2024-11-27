@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:15:03 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/25 15:22:52 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:10:02 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@ void	free_sprite(t_img *ptr, t_game *game)
 	mlx_destroy_image(game->mlx, ptr);
 	ptr = NULL;
 	free(ptr);
+	ptr = NULL;
 }
 
 void	free_no_exit(t_parse *parse, int print, char *str)
 {
+	if (parse->lines!= NULL)
+		free_lines(parse);
 	if (parse->map_square != NULL)
 		free_split(parse->map_square);
 	if (parse->map != NULL)
@@ -30,11 +33,9 @@ void	free_no_exit(t_parse *parse, int print, char *str)
 		free (parse->temp);
 	if (parse->info != NULL)
 		free_info(parse->info);
-	if (parse->lines!= NULL)
-		free_lines(parse);
 	if (parse->av != NULL)
 		free (parse->av);
-	if (parse->fd != 0)
+	if (parse->fd != -1)
 		close (parse->fd);
 	free(parse);
 	if (print == 1)
@@ -60,6 +61,8 @@ void	free_game(t_game *game, t_parse *parse, int print, char *str)
 		free_sprite(game->t_door3, game);
 	if (game->t_door4)
 		free_sprite(game->t_door4, game);
+	if (game->data.img && game->mlx)
+		mlx_destroy_image(game->mlx, game->data.img);
 	if (game->mlx && game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx && game->screen)
@@ -68,5 +71,4 @@ void	free_game(t_game *game, t_parse *parse, int print, char *str)
 		mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	free_no_exit(parse, print, str);
-
 }

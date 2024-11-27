@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:00 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/25 14:41:35 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/27 18:07:41 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	ft_update(t_game *game)
 	ft_clear_screen(game, 0);
 	ft_topdown(game);
 	ft_raycasting(game);
+	ft_minimap(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->data.img, 0, 0);
 	return (0);
 }
@@ -68,12 +69,12 @@ int	ft_xpm_to_image(t_game *game)
 	if (load_ea(game, game->parse) == 0)
 		free_game(game, game->parse, 1, "Error\nInvalid EA texture\n");
 	game->t_door = mlx_xpm_file_to_image(game->mlx, T_DOOR, &width, &height);
-	game->t_door = mlx_xpm_file_to_image(game->mlx, T_DOOR, &width, &height);
-	game->t_door = mlx_xpm_file_to_image(game->mlx, T_DOOR, &width, &height);
-	game->t_door = mlx_xpm_file_to_image(game->mlx, T_DOOR, &width, &height);
 	game->t_door2 = mlx_xpm_file_to_image(game->mlx, T_DOOR2, &width, &height);
 	game->t_door3 = mlx_xpm_file_to_image(game->mlx, T_DOOR3, &width, &height);
 	game->t_door4 = mlx_xpm_file_to_image(game->mlx, T_DOOR4, &width, &height);
+	game->black = mlx_xpm_file_to_image(game->mlx, "textures/black.xpm", &width, &height);
+	game->blue = mlx_xpm_file_to_image(game->mlx, "textures/blue.xpm", &width, &height);
+	game->red = mlx_xpm_file_to_image(game->mlx, "textures/red.xpm", &width, &height);
 	return (0);
 }
 
@@ -103,9 +104,13 @@ int	main(int ac, char **av)
 			game.parse->av = ft_strdup(av[1]);
 			game.parse->lines = ft_calloc(sizeof(char **), get_line(av[1]));
 			game.parse->fd = open(av[1], O_RDONLY);
+			if (game.parse->fd == -1)
+				free_game(&game, game.parse, 1, "Error\nWrong File 2\n");
 			if (parse_args(game.parse, game.parse->fd, av) == 0)
 			{
-				close(game.parse->fd);
+				free_game(&game, game.parse, 1, "Error\nMap Invalid\n");
+				if (game.parse->fd != -1)
+					close(game.parse->fd);
 				return (0);
 			}
 			ft_setup(&game);

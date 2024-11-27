@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 09:17:24 by aroualid          #+#    #+#             */
-/*   Updated: 2024/01/12 15:05:02 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/27 13:59:10 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,3 +128,19 @@ char	*get_next_line(int fd)
 		return (free(line), NULL);
 	return (line);
 }
+/*
+int main()
+{
+    int fd = open("../map/map.cub", O_RDONLY);
+    char *line;
+
+    while ((line = get_next_line(fd)) != NULL)
+    {
+        printf("%s", line);
+        free(line); // IMPORTANT : Sans cet appel, il y aurait une fuite !
+    }
+    close(fd);
+    return 0;
+}
+
+*/
