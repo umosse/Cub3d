@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 13:56:10 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/19 16:57:27 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:24:10 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_mapread3(char *line, t_game *game, int fd)
 char	**ft_mapread(char *file, t_game *game)
 {
 	(void) file;
-	game->map = game->parse->map;
+	game->map = game->parse->map_square;
 	return (game->map);
 }
 

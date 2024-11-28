@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:00 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/27 18:07:41 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/28 13:43:39 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,6 @@ int	ft_xpm_to_image(t_game *game)
 	game->t_door2 = mlx_xpm_file_to_image(game->mlx, T_DOOR2, &width, &height);
 	game->t_door3 = mlx_xpm_file_to_image(game->mlx, T_DOOR3, &width, &height);
 	game->t_door4 = mlx_xpm_file_to_image(game->mlx, T_DOOR4, &width, &height);
-	game->black = mlx_xpm_file_to_image(game->mlx, "textures/black.xpm", &width, &height);
-	game->blue = mlx_xpm_file_to_image(game->mlx, "textures/blue.xpm", &width, &height);
-	game->red = mlx_xpm_file_to_image(game->mlx, "textures/red.xpm", &width, &height);
 	return (0);
 }
 
