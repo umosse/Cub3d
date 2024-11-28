@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:00 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/08 14:52:49 by umosse           ###   ########.fr       */
+/*   Updated: 2024/11/28 11:40:19 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	ft_setup(t_game *game)
 	game->dirx = 0;
 	game->diry = 1;
 	game->planex = 0.85;
-	game->planey = 0;
+	game->planey = 0.0;
 	game->playerx = 15.5;
 	game->playery = 4.5;
 }

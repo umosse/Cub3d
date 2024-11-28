@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:44:01 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/08 15:14:41 by umosse           ###   ########.fr       */
+/*   Updated: 2024/11/21 17:42:55 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,14 @@ void	ft_movement2(t_game *game)
 	if (game->s == 1)
 	{
 		if (game->map[(int)game->playery][(int)(game->playerx
-			- game->dirx * game->movespeed)] == '0' ||
+			- game->dirx * game->movespeed - 0.1)] == '0' ||
 				game->map[(int)game->playery][(int)(game->playerx
-				- game->dirx * game->movespeed)] == 'O')
+				- game->dirx * game->movespeed - 0.1)] == 'O')
 			game->playerx -= game->dirx * game->movespeed;
 		if (game->map[(int)(game->playery - game->dirx
-				* game->movespeed)][(int)game->playerx] == '0' ||
+				* game->movespeed - 0.1)][(int)game->playerx] == '0' ||
 				game->map[(int)(game->playery - game->dirx
-					* game->movespeed)][(int)game->playerx] == 'O')
+					* game->movespeed - 0.1)][(int)game->playerx] == 'O')
 			game->playery -= game->diry * game->movespeed;
 	}
 }
@@ -118,14 +118,14 @@ void	ft_movement(t_game *game)
 	if (game->w == 1)
 	{
 		if (game->map[(int)game->playery][(int)(game->playerx
-			+ game->dirx * game->movespeed)] == '0' ||
+			+ game->dirx * game->movespeed + 0.1)] == '0' ||
 				game->map[(int)game->playery][(int)(game->playerx
-					+ game->dirx * game->movespeed)] == 'O')
+					+ game->dirx * game->movespeed  + 0.1)] == 'O')
 			game->playerx += game->dirx * game->movespeed;
 		if (game->map[(int)(game->playery + game->diry
-				* game->movespeed)][(int)game->playerx] == '0' ||
+				* game->movespeed + 0.1)][(int)game->playerx] == '0' ||
 				game->map[(int)(game->playery + game->diry
-					* game->movespeed)][(int)game->playerx] == 'O')
+					* game->movespeed + 0.1)][(int)game->playerx] == 'O')
 			game->playery += game->diry * game->movespeed;
 	}
 	ft_movement2(game);

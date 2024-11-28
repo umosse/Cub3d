@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 14:49:07 by umosse            #+#    #+#             */
-/*   Updated: 2024/10/31 15:28:25 by umosse           ###   ########.fr       */
+/*   Updated: 2024/11/21 17:38:26 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	ft_dda(t_game *game)
 {
 	while (game->hit == 0)
 	{
+		if (game->mapx < 0 || game->mapx > W_LENGTH || game->mapy < 0 || game->mapy > W_HEIGHT)
+			break ;
 		if (game->sidedistx < game->sidedisty)
 		{
 			game->sidedistx += game->deltadistx;
