@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 16:35:19 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/27 19:58:40 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/11/28 11:53:27 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,22 @@ void	draw_case (t_game *game, int x, int y, int color)
 		i++;
 	}
 }
-void	ft_read_minimap(t_game *game)
-{
-	int	x;
-	int	y;
+// void	ft_read_minimap(t_game *game)
+// {
+// 	int	x;
+// 	int	y;
 	
-	x = game->playerx;
-	y = game->playery;
+// 	x = game->playerx;
+// 	y = game->playery;
 
-	if (game->map[x][y + 1] == '1' && y + 1 < game->parse->max_y && y + 1 > 0)
-	{
-		printf("A\n");
-		draw_case (game, 20, 20, 0Xfffff);
-	}
-	else
-		return ;
-}
+// 	if (game->map[x][y + 1] == '1' && y + 1 < game->parse->max_y && y + 1 > 0)
+// 	{
+// 		printf("A\n");
+// 		draw_case (game, 20, 20, 0Xfffff);
+// 	}
+// 	else
+// 		return ;
+// }
 
 void	ft_minimap(t_game *game)
 {
@@ -68,5 +68,5 @@ void	ft_minimap(t_game *game)
 		}
 		i++;
 	}
-	ft_read_minimap(game);
+	// ft_read_minimap(game);
 }

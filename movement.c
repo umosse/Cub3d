@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:44:01 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/28 11:52:24 by umosse           ###   ########.fr       */
+/*   Updated: 2024/11/28 14:37:43 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lateral(t_game *game)
 {
-	if (game->a == 1)
+	if (game->d == 1)
 	{
 		if (game->map[(int)game->playery][(int)(game->playerx - game->diry
 			* game->movespeed * 10)] == '0' ||
@@ -27,12 +27,16 @@ void	ft_lateral(t_game *game)
 				* game->movespeed * 10)][(int)game->playerx] == 'O')
 			game->playery += game->dirx * game->movespeed;
 	}
-	if (game->d == 1)
+	if (game->a == 1)
 	{
 		if (game->map[(int)game->playery][(int)(game->playerx + game->diry
-			* game->movespeed * 10)] == '0')
+			* game->movespeed * 10)] == '0' ||
+				game->map[(int)game->playery][(int)(game->playerx + game->diry
+				* game->movespeed * 10)] == 'O')
 			game->playerx += game->diry * game->movespeed;
 		if (game->map[(int)(game->playery - game->dirx
+				* game->movespeed * 10)][(int)game->playerx] == '0' ||
+				game->map[(int)(game->playery - game->dirx
 				* game->movespeed * 10)][(int)game->playerx] == '0')
 			game->playery -= game->dirx * game->movespeed;
 	}
@@ -40,7 +44,7 @@ void	ft_lateral(t_game *game)
 
 void	ft_rotate(t_game *game)
 {
-	if (game->r == 1)
+	if (game->l == 1)
 	{
 		game->olddirx = game->dirx;
 		game->dirx = game->dirx * cos(-1 * game->rotspeed)
@@ -53,7 +57,7 @@ void	ft_rotate(t_game *game)
 		game->planey = game->oldplanex * sin(-1 * game->rotspeed)
 			+ game->planey * cos(-1 * game->rotspeed);
 	}
-	if (game->l == 1)
+	if (game->r == 1)
 	{
 		game->olddirx = game->dirx;
 		game->dirx = game->dirx * cos(game->rotspeed)
@@ -95,11 +99,13 @@ void	ft_movement2(t_game *game)
 {
 	if (game->s == 1)
 	{
+		printf("%c\n for x-> ", game->map[(int)game->playery][(int)(game->playerx - game->diry * game->movespeed * 10)]);
+		printf("%c\n for y-> ", game->map[(int)(game->playery - game->diry * game->movespeed * 10)][(int)game->playerx]);
 		if (game->map[(int)game->playery][(int)(game->playerx
 			- game->dirx * game->movespeed * 10)] == '0' ||
 				game->map[(int)game->playery][(int)(game->playerx
 				- game->diry * game->movespeed * 10)] == 'O')
-			game->playerx -= game->dirx * game->movespeed;
+					game->playerx -= game->dirx * game->movespeed;
 		if (game->map[(int)(game->playery - game->diry
 				* game->movespeed * 10)][(int)game->playerx] == '0' ||
 				game->map[(int)(game->playery - game->diry
@@ -117,6 +123,8 @@ void	ft_movement(t_game *game)
 	}
 	if (game->w == 1)
 	{
+		printf("%c\n for x -> ", game->map[(int)game->playery][(int)(game->playerx + game->dirx * game->movespeed * 10)]);
+		printf("%c\n for y -> ", game->map[(int)(game->playery + game->diry * game->movespeed * 10)][(int)game->playerx]);
 		if (game->map[(int)game->playery][(int)(game->playerx
 			+ game->dirx * game->movespeed * 10)] == '0' ||
 				game->map[(int)game->playery][(int)(game->playerx

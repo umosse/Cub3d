@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:00 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/28 11:52:20 by umosse           ###   ########.fr       */
+/*   Updated: 2024/11/28 14:34:32 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,50 @@ void	ft_setup(t_game *game)
 	game->movespeed = 0.01;
 	game->rotspeed = 0.005;
 	game->dirx = 0;
-	game->diry = 1;
+	game->diry = -1;
 	game->planex = 0.85;
 	game->planey = 0;
 	game->playerx = game->parse->player_x + 0.5;
 	game->playery = game->parse->player_y + 0.5;
+	if (game->parse->orientation == 'S')
+	{
+		game->olddirx = game->dirx;
+		game->dirx = game->dirx * cos(-1 * M_PI)
+			- game->diry * sin(-1 * M_PI);
+		game->diry = game->olddirx * sin(-1 * M_PI)
+			+ game->diry * cos(-1 * M_PI);
+		game->oldplanex = game->planex;
+		game->planex = game->planex * cos(-1 * M_PI)
+			- game->planey * sin(-1 * M_PI);
+		game->planey = game->oldplanex * sin(-1 * M_PI)
+			+ game->planey * cos(-1 * M_PI);
+	}
+	if (game->parse->orientation == 'E')
+	{
+		game->olddirx = game->dirx;
+		game->dirx = game->dirx * cos(-1 * M_PI / 2)
+			- game->diry * sin(-1 * M_PI / 2);
+		game->diry = game->olddirx * sin(-1 * M_PI / 2)
+			+ game->diry * cos(-1 * M_PI / 2);
+		game->oldplanex = game->planex;
+		game->planex = game->planex * cos(-1 * M_PI / 2)
+			- game->planey * sin(-1 * M_PI / 2);
+		game->planey = game->oldplanex * sin(-1 * M_PI / 2)
+			+ game->planey * cos(-1 * M_PI / 2);
+	}
+	if (game->parse->orientation == 'W')
+	{
+		game->olddirx = game->dirx;
+		game->dirx = game->dirx * cos(-1 * 3 * M_PI / 2)
+			- game->diry * sin(-1 * 3 * M_PI / 2);
+		game->diry = game->olddirx * sin(-1 * 3 * M_PI / 2)
+			+ game->diry * cos(-1 * 3 * M_PI / 2);
+		game->oldplanex = game->planex;
+		game->planex = game->planex * cos(-1 * 3 * M_PI / 2)
+			- game->planey * sin(-1 * 3 * M_PI / 2);
+		game->planey = game->oldplanex * sin(-1 * 3 * M_PI / 2)
+			+ game->planey * cos(-1 * 3 * M_PI / 2);
+	}
 }
 
 int	main(int ac, char **av)
