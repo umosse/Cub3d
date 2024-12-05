@@ -18,7 +18,7 @@ SRCS = cub3d.c cub3dutils.c movement.c movementutils.c raycasting.c raycast_util
 SRCS_BONUS = 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
-CFLAGS = -Wall -Werror -Wextra -g3
+CFLAGS = -Wall -Werror -Wextra -g3 -O3
 RM = rm -f
 
 all: $(NAME)

@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 13:00:11 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/27 16:34:53 by aroualid         ###   ########.fr       */
+/*   Created: 2024/12/05 10:03:35 by aroualid          #+#    #+#             */
+/*   Updated: 2024/12/05 13:15:38 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "cub3d.h"
 
@@ -103,15 +104,15 @@ void	ft_colortextures(t_game *game)
 	{
 		if (game->side == 1 && game->raydiry > 0)
 			game->color = ((unsigned int *)game->t_north->data)
-			[game->t_north->width * game->texty + game->textx];
+			[game->t_north->width * game->texty + (game->t_north->width - game->textx - 1)];
 		if (game->side == 1 && game->raydiry <= 0)
 			game->color = ((unsigned int *)game->t_south->data)
-			[game->t_south->width * game->texty + game->textx];
+			[game->t_south->width * game->texty + (game->t_south->width - game->textx - 1)];
 		if (game->side == 0 && game->raydirx > 0)
 			game->color = ((unsigned int *)game->t_west->data)
-			[game->t_west->width * game->texty + game->textx];
+			[game->t_west->width * game->texty + (game->t_west->width - game->textx - 1)];
 		if (game->side == 0 && game->raydirx <= 0)
 			game->color = ((unsigned int *)game->t_east->data)
-			[game->t_east->width * game->texty + game->textx];
+			[game->t_east->width * game->texty + (game->t_east->width - game->textx - 1)];
 	}
 }

@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 14:49:07 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/27 19:18:20 by aroualid         ###   ########.fr       */
+/*   Created: 2024/12/05 10:13:18 by aroualid          #+#    #+#             */
+/*   Updated: 2024/12/05 10:13:32 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
 
 void	ft_topdown(t_game *game)
 {
@@ -43,6 +35,8 @@ void	ft_dda(t_game *game)
 {
 	while (game->hit == 0)
 	{
+		if (game->mapx < 0 || game->mapx > W_LENGTH || game->mapy < 0 || game->mapy > W_HEIGHT)
+			break ;
 		if (game->sidedistx < game->sidedisty)
 		{
 			game->sidedistx += game->deltadistx;
