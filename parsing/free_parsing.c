@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:31:20 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/27 13:36:25 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:24:06 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	free_lines(t_parse *parse)
 
 void	free_and_exit(t_parse *parse, int print, char *str)
 {
-	if (parse->lines!= NULL)
+	if (parse->lines != NULL)
 		free_lines(parse);
 	if (parse->map_square != NULL)
 		free_split(parse->map_square);

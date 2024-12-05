@@ -6,7 +6,7 @@
 #    By: umosse <umosse@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/04 12:53:11 by umosse            #+#    #+#              #
-#    Updated: 2024/11/27 16:41:08 by aroualid         ###   ########.fr        #
+#    Updated: 2024/12/05 13:43:35 by aroualid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS = cub3d.c cub3dutils.c movement.c movementutils.c raycasting.c raycast_util
 SRCS_BONUS = 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
-CFLAGS = -Wall -Werror -Wextra -g3 -O3
+CFLAGS = -Wall -Werror -Wextra -g3
 RM = rm -f
 
 all: $(NAME)

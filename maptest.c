@@ -6,10 +6,9 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 10:09:18 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/05 10:09:28 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:40:52 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3d.h"
 
@@ -27,7 +26,7 @@ int	ft_mapread3(char *line, t_game *game, int fd)
 {
 	int	i;
 
-	i =0;
+	i = 0;
 	while (i < 6)
 	{
 		line = get_next_line(fd);

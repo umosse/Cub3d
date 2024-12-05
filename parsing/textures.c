@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:07:40 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/27 15:19:42 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:24:37 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	load_no(t_game *game, t_parse *parse)
 {
 	t_img	**ptr;
 
-	ptr = malloc(sizeof(t_img ) * 1);
+	ptr = malloc(sizeof(t_img) * 1);
 	if (!ptr)
 		return (0);
 	ptr[0] = load_sprite(game->mlx, parse->info->no_path);
@@ -46,7 +46,7 @@ int	load_so(t_game *game, t_parse *parse)
 {
 	t_img	**ptr;
 
-	ptr = malloc(sizeof(t_img ) * 1);
+	ptr = malloc(sizeof(t_img) * 1);
 	if (!ptr)
 		return (0);
 	ptr[0] = load_sprite(game->mlx, parse->info->so_path);
@@ -65,7 +65,7 @@ int	load_we(t_game *game, t_parse *parse)
 {
 	t_img	**ptr;
 
-	ptr = malloc(sizeof(t_img ) * 1);
+	ptr = malloc(sizeof(t_img) * 1);
 	if (!ptr)
 		return (0);
 	ptr[0] = load_sprite(game->mlx, parse->info->we_path);
@@ -84,7 +84,7 @@ int	load_ea(t_game *game, t_parse *parse)
 {
 	t_img	**ptr;
 
-	ptr = malloc(sizeof(t_img ) * 1);
+	ptr = malloc(sizeof(t_img) * 1);
 	if (!ptr)
 		return (0);
 	ptr[0] = load_sprite(game->mlx, parse->info->ea_path);

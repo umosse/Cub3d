@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:24 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/27 18:04:36 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:26:01 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@
 # define T_DOOR3 "textures/door3.xpm"
 # define T_DOOR4 "textures/door4.xpm"
 
-typedef struct s_data 
+typedef struct s_data
 {
 	void	*img;
 	char	*addr;
@@ -155,15 +155,7 @@ int		ft_key_released(int keysym, t_game *game);
 void	ft_mouse(t_game *game);
 
 //raycasting.c
-// void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-
-inline void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 void	ft_topdown(t_game *game);
 void	ft_dda(t_game *game);
@@ -196,4 +188,5 @@ int		load_we(t_game *game, t_parse *parse);
 int		load_ea(t_game *game, t_parse *parse);
 void	free_game(t_game *game, t_parse *parse, int print, char *str);
 void	ft_minimap(t_game *game);
+
 #endif

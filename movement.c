@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 10:03:49 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/05 10:34:38 by aroualid         ###   ########.fr       */
+/*   Created: 2024/12/05 13:34:44 by aroualid          #+#    #+#             */
+/*   Updated: 2024/12/05 16:25:28 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_lateral(t_game *game)
 		if (game->map[(int)(game->playery - game->dirx
 				* game->movespeed * 10)][(int)game->playerx] == '0' ||
 				game->map[(int)(game->playery - game->dirx
-				* game->movespeed * 10)][(int)game->playerx] == '0')
+				* game->movespeed * 10)][(int)game->playerx] == 'O')
 			game->playery -= game->dirx * game->movespeed;
 	}
 }
@@ -100,14 +100,14 @@ void	ft_movement2(t_game *game)
 	if (game->s == 1)
 	{
 		if (game->map[(int)game->playery][(int)(game->playerx
-			- game->dirx * game->movespeed * 10)] == '0' ||
+			- game->dirx * game->movespeed * 10)] != '1' &&
 				game->map[(int)game->playery][(int)(game->playerx
-				- game->diry * game->movespeed * 10)] == 'O')
+				- game->diry * game->movespeed * 10)] != 'D')
 					game->playerx -= game->dirx * game->movespeed;
 		if (game->map[(int)(game->playery - game->diry
-				* game->movespeed * 10)][(int)game->playerx] == '0' ||
+				* game->movespeed * 10)][(int)game->playerx] != '1' &&
 				game->map[(int)(game->playery - game->diry
-					* game->movespeed * 10)][(int)game->playerx] == 'O')
+					* game->movespeed * 10)][(int)game->playerx] != 'D')
 			game->playery -= game->diry * game->movespeed;
 	}
 }
@@ -117,7 +117,7 @@ void	ft_movement(t_game *game)
 	if (game->mouse == 1)
 	{
 		if (game->framecount <= 59)
-		ft_mouse(game);
+			ft_mouse(game);
 	}
 	if (game->w == 1)
 	{

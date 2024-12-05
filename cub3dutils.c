@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:28:29 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/08 15:16:01 by umosse           ###   ########.fr       */
+/*   Updated: 2024/12/05 16:14:27 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	ft_hooks(t_game *game)
 	mlx_loop_hook(game->mlx, ft_update, game);
 	mlx_hook(game->win, KeyRelease, KeyReleaseMask, &ft_key_released, game);
 	mlx_loop(game->mlx);
-	//ft_end(game, 0);
 }
 
 void	ft_clear_screen(t_game *game, unsigned int color)

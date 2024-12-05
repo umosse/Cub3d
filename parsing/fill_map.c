@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:37:57 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/27 14:06:35 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:28:25 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	check_lines(t_parse *parse, int i, int j, int k)
 	else if (j == (int)ft_strlen(parse->lines[i]))
 	{
 		j = 0;
-
 		while (parse->lines[i][j])
 		{
 			if (parse->lines[i][j] == '\t')
@@ -73,7 +72,7 @@ int	check_lines(t_parse *parse, int i, int j, int k)
 		parse->map[k] = ft_strdup(parse->lines[i]);
 	}
 	else
-		free_and_exit(parse, 1,"Error\nMap Invalid 1\n");
+		free_and_exit(parse, 1, "Error\nMap Invalid 1\n");
 	return (1);
 }
 
@@ -85,7 +84,7 @@ int	fill_map_lines(t_parse *parse, int max, int fd)
 
 	i = parse->first_line + 1;
 	k = 1;
-	while (i < max )
+	while (i < max)
 	{
 		parse->lines[i] = get_next_line(fd);
 		j = 0;
@@ -94,7 +93,7 @@ int	fill_map_lines(t_parse *parse, int max, int fd)
 			if (is_ok(parse->lines[i][j]) == 1)
 				j++;
 			else if (is_ok(parse->lines[i][j]) == 0)
-				free_and_exit(parse, 1,"Error\nMap Invalid 2\n");
+				free_and_exit(parse, 1, "Error\nMap Invalid 2\n");
 		}
 		check_lines(parse, i, j, k);
 		i++;
