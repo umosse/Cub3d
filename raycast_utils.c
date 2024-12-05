@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:00:11 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/28 13:46:32 by umosse           ###   ########.fr       */
+/*   Updated: 2024/11/29 13:05:06 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,13 @@ void	ft_colortextures(t_game *game)
 	else if (game->map[game->mapy][game->mapx] == '1')
 	{
 		if (game->side == 1 && game->raydiry > 0)
-			game->color = ((unsigned int *)game->t_north->data)
+			game->color = ((unsigned int *)game->t_south->data)
 			[game->t_north->width * game->texty + game->textx];
 		if (game->side == 1 && game->raydiry <= 0)
-			game->color = ((unsigned int *)game->t_south->data)
+			game->color = ((unsigned int *)game->t_north->data)
 			[game->t_south->width * game->texty + game->textx];
 		if (game->side == 0 && game->raydirx > 0)
-			game->color = ((unsigned int *)game->t_west->data)
+			game->color = ((unsigned int *)game->t_north->data)
 			[game->t_west->width * game->texty + game->textx];
 		if (game->side == 0 && game->raydirx <= 0)
 			game->color = ((unsigned int *)game->t_east->data)

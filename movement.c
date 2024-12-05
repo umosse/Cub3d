@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:44:01 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/28 14:37:43 by umosse           ###   ########.fr       */
+/*   Updated: 2024/11/29 13:00:07 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_lateral(t_game *game)
 		if (game->map[(int)(game->playery - game->dirx
 				* game->movespeed * 10)][(int)game->playerx] == '0' ||
 				game->map[(int)(game->playery - game->dirx
-				* game->movespeed * 10)][(int)game->playerx] == '0')
+				* game->movespeed * 10)][(int)game->playerx] == 'O')
 			game->playery -= game->dirx * game->movespeed;
 	}
 }
@@ -102,14 +102,14 @@ void	ft_movement2(t_game *game)
 		printf("%c\n for x-> ", game->map[(int)game->playery][(int)(game->playerx - game->diry * game->movespeed * 10)]);
 		printf("%c\n for y-> ", game->map[(int)(game->playery - game->diry * game->movespeed * 10)][(int)game->playerx]);
 		if (game->map[(int)game->playery][(int)(game->playerx
-			- game->dirx * game->movespeed * 10)] == '0' ||
+			- game->dirx * game->movespeed * 10)] != '1' &&
 				game->map[(int)game->playery][(int)(game->playerx
-				- game->diry * game->movespeed * 10)] == 'O')
+				- game->diry * game->movespeed * 10)] != 'D')
 					game->playerx -= game->dirx * game->movespeed;
 		if (game->map[(int)(game->playery - game->diry
-				* game->movespeed * 10)][(int)game->playerx] == '0' ||
+				* game->movespeed * 10)][(int)game->playerx] != '1' &&
 				game->map[(int)(game->playery - game->diry
-					* game->movespeed * 10)][(int)game->playerx] == 'O')
+					* game->movespeed * 10)][(int)game->playerx] != 'D')
 			game->playery -= game->diry * game->movespeed;
 	}
 }
