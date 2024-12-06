@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:37:57 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/05 15:28:25 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/06 16:16:35 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,15 @@ int	fill_map_lines(t_parse *parse, int max, int fd)
 void	fill_map(t_parse *parse, int max, int fd)
 {
 	parse->map = ft_calloc (sizeof(char *), (max - parse->first_line) + 1);
-	parse->map[0] = ft_strdup (parse->lines[parse->first_line]);
+	parse->map[0] = replace_tab_by_space(parse->lines[parse->first_line]);
 	fill_map_lines(parse, max, fd);
 	max_map(parse);
+	if (parse->max_y < get_line(parse->av) - parse->first_line - 1)
+		free_and_exit(parse, 1, "Error\nMap Error\n");
 	if (find_direction(parse) == 1)
 		find_player_pos(parse);
 	else
-		return ;
+		free_and_exit(parse, 1, "Error\nWrong Number of Players\n");
 }
 
 int	first_line(t_parse *parse, int i)
@@ -134,7 +136,10 @@ int	first_line(t_parse *parse, int i)
 		return (1);
 	}
 	else
+	{
+		free_and_exit(parse, 1, "Error\nMap Error\n");
 		return (0);
+	}
 }
 
 int	check_map(t_parse *parse, int fd, char *av)
@@ -150,9 +155,7 @@ int	check_map(t_parse *parse, int fd, char *av)
 		if (j == (int) ft_strlen(parse->lines[i]))
 			;
 		else if (first_line(parse, i) == 1)
-		{
 			return (1);
-		}
 		i++;
 	}
 	return (0);

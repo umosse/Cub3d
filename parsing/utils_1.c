@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:24:49 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/27 14:06:46 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/06 14:58:23 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	skip_space_reverse(char *s)
 
 	if (!s)
 		return (0);
-	i = ft_strlen(s) - 1;
+	i = ft_strlen(s);
 	while (s[i] && (s[i] == ' ' || (s[i] >= '\t' && s[i] <= '\r')))
 		i--;
 	return (i);

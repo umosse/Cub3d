@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:51:07 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/27 10:57:47 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:51:12 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ int	convert_f(char *str, t_parse *parse, t_info *info)
 			r = ft_atoi(info->f_rgb[0]);
 			g = ft_atoi(info->f_rgb[1]);
 			b = ft_atoi(info->f_rgb[2]);
-			if ((r >= 0 && r <= 255)
-				&& (g >= 0 && g <= 255) && (b >= 0 && g <= 255))
-			info->f = get_color(r, g, b);
+			if (r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255)
+				return (info->f = get_color(r, g, b));
+			free_and_exit(parse, 1, "Error\nBad args in F\n");
 		}
 		else
 			free_and_exit(parse, 1, "Error\nBad args in F\n");
@@ -120,9 +120,9 @@ int	convert_c(char *str, t_parse *parse, t_info *info)
 			r = ft_atoi(info->c_rgb[0]);
 			g = ft_atoi(info->c_rgb[1]);
 			b = ft_atoi(info->c_rgb[2]);
-			if ((r >= 0 && r <= 255)
-				&& (g >= 0 && g <= 255) && (b >= 0 && g <= 255))
-				info->c = get_color(r, g, b);
+			if (r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255)
+				return (info->c = get_color(r, g, b));
+			free_and_exit(parse, 1, "Error\nBad args in C\n");
 		}
 		else
 			free_and_exit(parse, 1, "Error\nBad args in C\n");

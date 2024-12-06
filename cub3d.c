@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 10:09:45 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/05 14:13:06 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/06 11:13:07 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,27 @@ int	ft_update(t_game *game)
 	return (0);
 }
 
-int	ft_xpm_to_image(t_game *game)
+void	load_door(t_game *game)
 {
 	int		width;
 	int		height;
 
+	game->t_door = mlx_xpm_file_to_image(game->mlx, T_DOOR, &width, &height);
+	if (game->t_door == NULL)
+		free_game(game, game->parse, 1, "Error\nInvalid Door texture\n");
+	game->t_door2 = mlx_xpm_file_to_image(game->mlx, T_DOOR2, &width, &height);
+	if (game->t_door2 == NULL)
+		free_game(game, game->parse, 1, "Error\nInvalid Door texture\n");
+	game->t_door3 = mlx_xpm_file_to_image(game->mlx, T_DOOR3, &width, &height);
+	if (game->t_door3 == NULL)
+		free_game(game, game->parse, 1, "Error\nInvalid Door texture\n");
+	game->t_door4 = mlx_xpm_file_to_image(game->mlx, T_DOOR4, &width, &height);
+	if (game->t_door4 == NULL)
+		free_game(game, game->parse, 1, "Error\nInvalid Door texture\n");
+}
+
+int	ft_xpm_to_image(t_game *game)
+{
 	if (load_no(game, game->parse) == 0)
 		free_game(game, game->parse, 1, "Error\nInvalid NO texture\n");
 	if (load_so(game, game->parse) == 0)
@@ -68,10 +84,7 @@ int	ft_xpm_to_image(t_game *game)
 		free_game(game, game->parse, 1, "Error\nInvalid WE texture\n");
 	if (load_ea(game, game->parse) == 0)
 		free_game(game, game->parse, 1, "Error\nInvalid EA texture\n");
-	game->t_door = mlx_xpm_file_to_image(game->mlx, T_DOOR, &width, &height);
-	game->t_door2 = mlx_xpm_file_to_image(game->mlx, T_DOOR2, &width, &height);
-	game->t_door3 = mlx_xpm_file_to_image(game->mlx, T_DOOR3, &width, &height);
-	game->t_door4 = mlx_xpm_file_to_image(game->mlx, T_DOOR4, &width, &height);
+	load_door(game);
 	return (0);
 }
 
