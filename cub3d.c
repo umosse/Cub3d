@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 10:09:45 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/06 11:13:07 by aroualid         ###   ########.fr       */
+/*   Created: 2024/12/09 15:26:22 by aroualid          #+#    #+#             */
+/*   Updated: 2024/12/09 16:17:02 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,6 @@ int	ft_destroy(t_game *game)
 	return (1);
 }
 
-// void	ft_end(t_game *game, int j)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (game->map)
-// 	{
-// 		while (i < game->maxmapy)
-// 			free(game->map[i++]);
-// 		free(game->map);
-// 	}
-// 	i = 0;
-// 	if (game->maptest)
-// 	{
-// 		while (i < game->maxmapy)
-// 			free(game->maptest[i++]);
-// 		free(game->maptest);
-// 	}
-// 	if (j == 0)
-// 		ft_destroyall(game);
-// 	if (game->mlx)
-// 		free(game->mlx);
-// }
-
 int	ft_update(t_game *game)
 {
 	ft_movement(game);
@@ -52,39 +28,6 @@ int	ft_update(t_game *game)
 	ft_raycasting(game);
 	ft_minimap(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->data.img, 0, 0);
-	return (0);
-}
-
-void	load_door(t_game *game)
-{
-	int		width;
-	int		height;
-
-	game->t_door = mlx_xpm_file_to_image(game->mlx, T_DOOR, &width, &height);
-	if (game->t_door == NULL)
-		free_game(game, game->parse, 1, "Error\nInvalid Door texture\n");
-	game->t_door2 = mlx_xpm_file_to_image(game->mlx, T_DOOR2, &width, &height);
-	if (game->t_door2 == NULL)
-		free_game(game, game->parse, 1, "Error\nInvalid Door texture\n");
-	game->t_door3 = mlx_xpm_file_to_image(game->mlx, T_DOOR3, &width, &height);
-	if (game->t_door3 == NULL)
-		free_game(game, game->parse, 1, "Error\nInvalid Door texture\n");
-	game->t_door4 = mlx_xpm_file_to_image(game->mlx, T_DOOR4, &width, &height);
-	if (game->t_door4 == NULL)
-		free_game(game, game->parse, 1, "Error\nInvalid Door texture\n");
-}
-
-int	ft_xpm_to_image(t_game *game)
-{
-	if (load_no(game, game->parse) == 0)
-		free_game(game, game->parse, 1, "Error\nInvalid NO texture\n");
-	if (load_so(game, game->parse) == 0)
-		free_game(game, game->parse, 1, "Error\nInvalid SO texture\n");
-	if (load_we(game, game->parse) == 0)
-		free_game(game, game->parse, 1, "Error\nInvalid WE texture\n");
-	if (load_ea(game, game->parse) == 0)
-		free_game(game, game->parse, 1, "Error\nInvalid EA texture\n");
-	load_door(game);
 	return (0);
 }
 
@@ -111,72 +54,50 @@ void	ft_setup(t_game *game)
 		game->planey = game->oldplanex * sin(-1 * M_PI)
 			+ game->planey * cos(-1 * M_PI);
 	}
-	if (game->parse->orientation == 'E')
+	ft_setup_e(game);
+	ft_setup_w(game);
+}
+
+void	start_game(t_game game, char **av)
+{
+	game.parse->av = ft_strdup(av[1]);
+	game.parse->lines = ft_calloc(sizeof(char **), get_line(av[1]));
+	game.parse->fd = open(av[1], O_RDONLY);
+	if (game.parse->fd == -1)
+		free_game(&game, game.parse, 1, "Error\nWrong File 2\n");
+	if (parse_args(game.parse, game.parse->fd, av) == 0)
 	{
-		game->olddirx = game->dirx;
-		game->dirx = game->dirx * cos(-1 * M_PI / 2)
-			- game->diry * sin(-1 * M_PI / 2);
-		game->diry = game->olddirx * sin(-1 * M_PI / 2)
-			+ game->diry * cos(-1 * M_PI / 2);
-		game->oldplanex = game->planex;
-		game->planex = game->planex * cos(-1 * M_PI / 2)
-			- game->planey * sin(-1 * M_PI / 2);
-		game->planey = game->oldplanex * sin(-1 * M_PI / 2)
-			+ game->planey * cos(-1 * M_PI / 2);
+		free_game(&game, game.parse, 1, "Error\nMap Invalid\n");
+		if (game.parse->fd != -1)
+			close(game.parse->fd);
 	}
-	if (game->parse->orientation == 'W')
-	{
-		game->olddirx = game->dirx;
-		game->dirx = game->dirx * cos(-1 * 3 * M_PI / 2)
-			- game->diry * sin(-1 * 3 * M_PI / 2);
-		game->diry = game->olddirx * sin(-1 * 3 * M_PI / 2)
-			+ game->diry * cos(-1 * 3 * M_PI / 2);
-		game->oldplanex = game->planex;
-		game->planex = game->planex * cos(-1 * 3 * M_PI / 2)
-			- game->planey * sin(-1 * 3 * M_PI / 2);
-		game->planey = game->oldplanex * sin(-1 * 3 * M_PI / 2)
-			+ game->planey * cos(-1 * 3 * M_PI / 2);
-	}
+	ft_setup(&game);
+	close (game.parse->fd);
+	ft_mapread(av[1], &game);
+	game.mlx = mlx_init();
+	if (!game.mlx)
+		free_and_exit(game.parse, 1, "Error\nInvalid Mlx pointer\n");
+	ft_xpm_to_image(&game);
+	game.win = mlx_new_window(game.mlx, W_LENGTH, W_HEIGHT, "cub3d");
+	game.data.img = mlx_new_image(game.mlx, W_LENGTH, W_HEIGHT);
+	game.data.addr = mlx_get_data_addr(game.data.img,
+			&game.data.bits_per_pixel,
+			&game.data.line_length, &game.data.endian);
+	ft_hooks(&game);
+	free_game(&game, game.parse, 0, "");
 }
 
 int	main(int ac, char **av)
 {
 	t_game	game;
-	
+
 	game = (t_game){0};
 	game.parse = ft_calloc(sizeof(t_parse), 1);
 	game.parse->info = ft_calloc(sizeof(t_info), 1);
 	if (ac == 2)
 	{
 		if (check_file(av[1]) == 1)
-		{
-			game.parse->av = ft_strdup(av[1]);
-			game.parse->lines = ft_calloc(sizeof(char **), get_line(av[1]));
-			game.parse->fd = open(av[1], O_RDONLY);
-			if (game.parse->fd == -1)
-				free_game(&game, game.parse, 1, "Error\nWrong File 2\n");
-			if (parse_args(game.parse, game.parse->fd, av) == 0)
-			{
-				free_game(&game, game.parse, 1, "Error\nMap Invalid\n");
-				if (game.parse->fd != -1)
-					close(game.parse->fd);
-				return (0);
-			}
-			ft_setup(&game);
-			close (game.parse->fd);
-			ft_mapread(av[1], &game);
-			game.mlx = mlx_init();
-			if (!game.mlx)
-				return (1);
-			ft_xpm_to_image(&game);
-			game.win = mlx_new_window(game.mlx, W_LENGTH, W_HEIGHT, "cub3d");
-			game.data.img = mlx_new_image(game.mlx, W_LENGTH, W_HEIGHT);
-			game.data.addr = mlx_get_data_addr(game.data.img,
-				&game.data.bits_per_pixel,
-				&game.data.line_length, &game.data.endian);
-			ft_hooks(&game);
-			free_game(&game, game.parse, 0, "");
-		}
+			start_game(game, av);
 		else
 			free_and_exit(game.parse, 1, "Error \nWrong file\n");
 	}

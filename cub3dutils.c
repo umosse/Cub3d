@@ -6,11 +6,45 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:28:29 by umosse            #+#    #+#             */
-/*   Updated: 2024/12/05 16:14:27 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/09 14:36:47 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	ft_setup_e(t_game *game)
+{
+	if (game->parse->orientation == 'E')
+	{
+		game->olddirx = game->dirx;
+		game->dirx = game->dirx * cos(-1 * M_PI / 2)
+			- game->diry * sin(-1 * M_PI / 2);
+		game->diry = game->olddirx * sin(-1 * M_PI / 2)
+			+ game->diry * cos(-1 * M_PI / 2);
+		game->oldplanex = game->planex;
+		game->planex = game->planex * cos(-1 * M_PI / 2)
+			- game->planey * sin(-1 * M_PI / 2);
+		game->planey = game->oldplanex * sin(-1 * M_PI / 2)
+			+ game->planey * cos(-1 * M_PI / 2);
+	}
+}
+
+void	ft_setup_w(t_game *game)
+{
+	if (game->parse->orientation == 'W')
+	{
+		game->olddirx = game->dirx;
+		game->dirx = game->dirx * cos(-1 * 3 * M_PI / 2)
+			- game->diry * sin(-1 * 3 * M_PI / 2);
+		game->diry = game->olddirx * sin(-1 * 3 * M_PI / 2)
+			+ game->diry * cos(-1 * 3 * M_PI / 2);
+		game->oldplanex = game->planex;
+		game->planex = game->planex * cos(-1 * 3 * M_PI / 2)
+			- game->planey * sin(-1 * 3 * M_PI / 2);
+		game->planey = game->oldplanex * sin(-1 * 3 * M_PI / 2)
+			+ game->planey * cos(-1 * 3 * M_PI / 2);
+	}
+}
 
 void	ft_frames(t_game *game)
 {
@@ -18,26 +52,6 @@ void	ft_frames(t_game *game)
 	if (game->framecount > 60)
 		game->framecount = 0;
 }
-
-// void	ft_destroyall(t_game *game)
-// {
-// 	if (game->character)
-// 		mlx_destroy_image(game->mlx, game->character);
-// 	if (game->character2)
-// 		mlx_destroy_image(game->mlx, game->character2);
-// 	if (game->wall)
-// 		mlx_destroy_image(game->mlx, game->wall);
-// 	if (game->floor)
-// 		mlx_destroy_image(game->mlx, game->floor);
-// 	if (game->opened)
-// 		mlx_destroy_image(game->mlx, game->opened);
-// 	if (game->closed)
-// 		mlx_destroy_image(game->mlx, game->closed);
-// 	if (game->collectible)
-// 		mlx_destroy_image(game->mlx, game->collectible);
-// 	if (game->enemy)
-// 		mlx_destroy_image(game->mlx, game->enemy);
-// }
 
 void	ft_hooks(t_game *game)
 {

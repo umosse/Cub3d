@@ -6,31 +6,11 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 10:33:10 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/06 13:43:33 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/09 14:57:02 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-int	get_line(char *file)
-{
-	char	*str;
-	int		infile;
-	int		i;
-
-	i = 0;
-	infile = open(file, O_RDONLY);
-	str = get_next_line(infile);
-	while (str)
-	{
-		i++;
-		free(str);
-		str = get_next_line(infile);
-	}
-	close(infile);
-	free(str);
-	return (i);
-}
 
 int	check_id(char *str, t_parse *parse)
 {
@@ -76,13 +56,6 @@ void	check_line(t_parse *parse, int i, int j, int k)
 	}
 }
 
-//					printf("max x = %d\n", parse->max_x);
-//					printf("max y = %i\n", parse->max_y);
-//					for (int l = 0; parse->map_square[l]; l++)
-//					{
-//						printf("%s\n", parse->map_square[l]);
-//					}
-
 int	fill_ok(t_parse *parse, int fd, char *av, int i)
 {
 	if (is_all_fill(parse) == 1)
@@ -92,7 +65,7 @@ int	fill_ok(t_parse *parse, int fd, char *av, int i)
 		{
 			fill_map(parse, get_line(av), fd);
 			new_map(parse);
-		parse->map[(int)parse->player_y][(int)parse->player_x] = '0';
+			parse->map[(int)parse->player_y][(int)parse->player_x] = '0';
 		}
 		return (1);
 	}

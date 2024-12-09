@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:24 by umosse            #+#    #+#             */
-/*   Updated: 2024/12/05 16:26:01 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/09 16:16:44 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,8 @@ int		ft_destroy(t_game *game);
 int		ft_update(t_game *game);
 
 //cub3dutils.c
+void	ft_setup_e(t_game *game);
+void	ft_setup_w(t_game *game);
 void	ft_frames(t_game *game);
 void	ft_clear_screen(t_game *game, unsigned int color);
 void	ft_hooks(t_game *game);
@@ -153,6 +155,11 @@ void	ft_movement(t_game *game);
 int		ft_key_pressed(int keysym, t_game *game);
 int		ft_key_released(int keysym, t_game *game);
 void	ft_mouse(t_game *game);
+
+//movementutils2.c
+void	ft_movement_p2(t_game *game);
+void	ft_lateral_a(t_game *game);
+void	ft_rotate_r(t_game *game);
 
 //raycasting.c
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -188,5 +195,6 @@ int		load_we(t_game *game, t_parse *parse);
 int		load_ea(t_game *game, t_parse *parse);
 void	free_game(t_game *game, t_parse *parse, int print, char *str);
 void	ft_minimap(t_game *game);
+int		ft_xpm_to_image(t_game *game);
 
 #endif
