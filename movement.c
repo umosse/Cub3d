@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:44:01 by umosse            #+#    #+#             */
-/*   Updated: 2024/11/29 13:00:07 by umosse           ###   ########.fr       */
+/*   Updated: 2024/12/09 14:10:04 by umosse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,7 @@ void	ft_lateral(t_game *game)
 				* game->movespeed * 10)][(int)game->playerx] == 'O')
 			game->playery += game->dirx * game->movespeed;
 	}
-	if (game->a == 1)
-	{
-		if (game->map[(int)game->playery][(int)(game->playerx + game->diry
-			* game->movespeed * 10)] == '0' ||
-				game->map[(int)game->playery][(int)(game->playerx + game->diry
-				* game->movespeed * 10)] == 'O')
-			game->playerx += game->diry * game->movespeed;
-		if (game->map[(int)(game->playery - game->dirx
-				* game->movespeed * 10)][(int)game->playerx] == '0' ||
-				game->map[(int)(game->playery - game->dirx
-				* game->movespeed * 10)][(int)game->playerx] == 'O')
-			game->playery -= game->dirx * game->movespeed;
-	}
+	ft_lateral_a(game);
 }
 
 void	ft_rotate(t_game *game)
@@ -57,19 +45,7 @@ void	ft_rotate(t_game *game)
 		game->planey = game->oldplanex * sin(-1 * game->rotspeed)
 			+ game->planey * cos(-1 * game->rotspeed);
 	}
-	if (game->r == 1)
-	{
-		game->olddirx = game->dirx;
-		game->dirx = game->dirx * cos(game->rotspeed)
-			- game->diry * sin(game->rotspeed);
-		game->diry = game->olddirx * sin(game->rotspeed)
-			+ game->diry * cos(game->rotspeed);
-		game->oldplanex = game->planex;
-		game->planex = game->planex * cos(game->rotspeed)
-			- game->planey * sin(game->rotspeed);
-		game->planey = game->oldplanex * sin(game->rotspeed)
-			+ game->planey * cos(game->rotspeed);
-	}
+	ft_rotate_r(game);
 }
 
 void	ft_door(t_game *game)
@@ -136,13 +112,5 @@ void	ft_movement(t_game *game)
 					* game->movespeed * 10)][(int)game->playerx] == 'O')
 			game->playery += game->diry * game->movespeed;
 	}
-	ft_movement2(game);
-	ft_lateral(game);
-	ft_rotate(game);
-	if (game->mouse == 1 && game->framecount == 60)
-	{
-		mlx_mouse_move(game->mlx, game->win, W_LENGTH / 2, W_HEIGHT / 2);
-		game->l = 0;
-		game->r = 0;
-	}
+	ft_movement_p2(game);
 }
