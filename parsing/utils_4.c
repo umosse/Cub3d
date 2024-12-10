@@ -6,11 +6,12 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:56:23 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/09 15:30:59 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:57:57 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+#include "parsing.h"
 
 int	get_line(char *file)
 {
@@ -37,8 +38,8 @@ int	check_lines(t_parse *parse, int i, int j, int k)
 	int	l;
 
 	l = skip_space(parse->lines[i]);
-	if (l == (int) ft_strlen(parse->lines[i]))
-		return (1);
+	if (check_empty_line(parse, i, l) == 0)
+		free_and_exit(parse, 1, "Error\nMap Invalid 1\n");
 	else if (j == (int)ft_strlen(parse->lines[i]))
 	{
 		j = 0;
@@ -96,4 +97,25 @@ void	fill_map(t_parse *parse, int max, int fd)
 		find_player_pos(parse);
 	else
 		free_and_exit(parse, 1, "Error\nWrong Number of Players\n");
+}
+
+int	check_args_for_rgb(int r, int g, int b, char **rgb)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < 3)
+	{
+		if (rgb[i][j] >= '0' && rgb[i][j] <= '9')
+			j++;
+		else
+			return (0);
+		j = 0;
+		i++;
+	}
+	if (r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255)
+		return (1);
+	return (0);
 }

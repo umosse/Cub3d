@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:24:49 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/09 14:51:51 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/10 13:32:58 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	skip_space_reverse(char *s)
 
 	if (!s)
 		return (0);
-	i = ft_strlen(s);
+	i = ft_strlen(s) - 1;
 	while (s[i] && (s[i] == ' ' || (s[i] >= '\t' && s[i] <= '\r')))
 		i--;
 	return (i);
@@ -69,7 +69,7 @@ char	*replace_tab_by_space(char *str)
 	char	*res;
 
 	res = ft_calloc(sizeof(char),
-			(ft_strlen(str) + (count_symbol(str, '\t') * 4)));
+			(ft_strlen(str) + (count_symbol(str, '\t') * 4) + 1));
 	i = 0;
 	k = 0;
 	while (str[i])

@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 10:33:10 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/09 14:57:02 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/10 13:52:00 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	fill_ok(t_parse *parse, int fd, char *av, int i)
 			new_map(parse);
 			parse->map[(int)parse->player_y][(int)parse->player_x] = '0';
 		}
+		else
+			free_and_exit(parse, 1, "Error\nInvalid Map\n");
 		return (1);
 	}
 	return (0);

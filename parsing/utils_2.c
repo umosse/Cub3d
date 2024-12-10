@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 10:20:14 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/09 14:51:51 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/10 15:02:13 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,20 @@ int	find_direction(t_parse *parse)
 	return (res);
 }
 
-int	ft_putchar(char c)
+int	check_empty_line(t_parse *parse, int i, int l)
 {
-	write(1, &c, 1);
-	return (1);
+	if (l == (int) ft_strlen(parse->lines[i]))
+	{
+		i++;
+		while (parse->lines[i])
+		{
+			l = skip_space(parse->lines[i]);
+			if (l == (int) ft_strlen(parse->lines[i]))
+				i++;
+		}
+		if (i + parse->first_line == get_line(parse->av))
+			return (1);
+	}
+	printf("%i %i\n", get_line(parse->av), i + parse->first_line);
+	return (0);
 }

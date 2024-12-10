@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:46:12 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/09 14:47:24 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/10 13:35:56 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,15 @@ void	find_player_pos(t_parse *parse)
 
 void	max_map(t_parse *parse)
 {
-	size_t	taille;
+	int		taille;
 	int		i;
-	int		res;
 
-	res = 0;
 	taille = 0;
 	i = 0;
-	while (parse->map[i])
+	while (i < get_line(parse->av) - parse->first_line && parse->map[i])
 	{
-		if (taille < ft_strlen(parse->map[i]))
-		{
-			taille = ft_strlen(parse->map[i]);
-			res = i;
-		}
+		if ((parse->map[i]) && (taille < (int)ft_strlen(parse->map[i])))
+			taille = (int)ft_strlen(parse->map[i]);
 		i++;
 	}
 	parse->max_x = taille;
@@ -74,12 +69,9 @@ int	check_first_last_wall(t_parse *parse)
 	{
 		j = skip_space(parse->map_square[i]);
 		k = skip_space_reverse(parse->map_square[i]);
-		if (parse->map_square[i][j] == '1')
+		if (parse->map_square[i][j] == '1' && parse->map_square[i][k] == '1')
 		{
-			if (parse->map_square[i][k] == '1')
-				i++;
-			else
-				return (0);
+			i++;
 		}
 		else
 			return (0);
@@ -89,6 +81,8 @@ int	check_first_last_wall(t_parse *parse)
 
 int	check_around(t_parse *parse, int j, int i)
 {
+	if (check_first_last_wall(parse) == 0)
+		return (6);
 	if ((i > 0 && i < parse->max_y) && (j > 0 && j < parse->max_x))
 	{
 		if (parse->map_square[i][j + 1] && parse->map_square[i][j + 1] == ' ')

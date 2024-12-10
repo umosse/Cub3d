@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 10:05:56 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/09 14:35:51 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/10 13:43:44 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	minimap_utils(t_game *game, int player_x, int player_y, int x_min)
 	y_max = player_y + 10;
 	while (y_min <= y_max)
 	{
-		if ((x_min >= 0 && x_min <= game->parse->max_x)
-			&& (y_min >= 0 && y_min <= game->parse->max_y))
+		if ((x_min >= 0 && x_min < game->parse->max_x)
+			&& (y_min >= 0 && y_min < game->parse->max_y))
 		{
 			map_x = W_LENGTH - 150 + (75 - 5) - (y_min - player_y) * 10;
 			map_y = (75 - 5) + (x_min - player_x) * 10;
