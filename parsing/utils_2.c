@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 10:20:14 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/10 15:02:13 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:58:19 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,10 @@ int	find_direction(t_parse *parse)
 	res = 0;
 	while (i < parse->max_y)
 	{
+		if (!parse->map[i])
+			free_and_exit(parse, 1, "Error\n Invalid Map 7\n");
 		str = parse->map[i];
-		while (str[j] != '\n')
+		while (str[j] && str[j] != '\n')
 		{
 			if (str[j] == 'N' || str[j] == 'S' || str[j] == 'E'
 				|| str[j] == 'W')
@@ -93,20 +95,25 @@ int	find_direction(t_parse *parse)
 	return (res);
 }
 
-int	check_empty_line(t_parse *parse, int i, int l)
+int	check_empty_line(t_parse *parse)
 {
-	if (l == (int) ft_strlen(parse->lines[i]))
+	int	i;
+	int	l;
+	int	j;
+
+	j = 0;
+	i = parse->first_line;
+	while (i < get_line(parse->av) && parse->lines[i])
 	{
-		i++;
-		while (parse->lines[i])
+		l = skip_space(parse->lines[i]);
+		if (l == (int)ft_strlen(parse->lines[i]))
 		{
-			l = skip_space(parse->lines[i]);
-			if (l == (int) ft_strlen(parse->lines[i]))
-				i++;
+			j = i;
 		}
-		if (i + parse->first_line == get_line(parse->av))
-			return (1);
+		i++;
 	}
-	printf("%i %i\n", get_line(parse->av), i + parse->first_line);
-	return (0);
+	if (j == i - 1 || j == 0)
+		return (0);
+	else
+		return (1);
 }

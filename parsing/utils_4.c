@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:56:23 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/10 14:57:57 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/11 10:42:22 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,7 @@ int	get_line(char *file)
 
 int	check_lines(t_parse *parse, int i, int j, int k)
 {
-	int	l;
-
-	l = skip_space(parse->lines[i]);
-	if (check_empty_line(parse, i, l) == 0)
-		free_and_exit(parse, 1, "Error\nMap Invalid 1\n");
-	else if (j == (int)ft_strlen(parse->lines[i]))
+	if (j == (int)ft_strlen(parse->lines[i]))
 	{
 		j = 0;
 		while (parse->lines[i][j])
@@ -82,6 +77,8 @@ int	fill_map_lines(t_parse *parse, int max, int fd)
 		i++;
 		k++;
 	}
+	if (check_empty_line(parse) == 1)
+		free_and_exit(parse, 1, "Error\nEmpty line in map\n");
 	return (1);
 }
 

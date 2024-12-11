@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:46:12 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/10 13:35:56 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:58:46 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	find_player_pos(t_parse *parse)
 	while (i < parse->max_y)
 	{
 		str = parse->map[i];
-		while (str[j] != '\n')
+		while (str[j] && str[j] != '\n')
 		{
 			if (str[j] == 'N' || str[j] == 'S' || str[j] == 'E'
 				|| str[j] == 'W')
@@ -65,14 +65,17 @@ int	check_first_last_wall(t_parse *parse)
 	int	k;
 
 	i = 0;
-	while (i < parse->max_y)
+	while (i < parse->max_y && parse->map_square[i])
 	{
 		j = skip_space(parse->map_square[i]);
 		k = skip_space_reverse(parse->map_square[i]);
-		if (parse->map_square[i][j] == '1' && parse->map_square[i][k] == '1')
+		if (k <= 0 || j == (int) ft_strlen(parse->map_square[i]))
 		{
 			i++;
+			break ;
 		}
+		if (parse->map_square[i][j] == '1' && parse->map_square[i][k] == '1')
+			i++;
 		else
 			return (0);
 	}
@@ -104,7 +107,7 @@ int	check_map_ok(t_parse *parse)
 	int	k;
 
 	i = 0;
-	while (i < parse->max_y)
+	while (i < parse->max_y && parse->map_square[i])
 	{
 		j = skip_space(parse->map_square[i]);
 		k = skip_space_reverse(parse->map_square[i]);

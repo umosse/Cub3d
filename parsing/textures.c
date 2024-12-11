@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:07:40 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/05 15:24:37 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/11 14:00:55 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ int	load_no(t_game *game, t_parse *parse)
 	if (!ptr)
 		return (0);
 	ptr[0] = load_sprite(game->mlx, parse->info->no_path);
-	game->t_north = ptr[0];
 	if (ptr[0] == NULL)
 	{
 		free(ptr[0]);
 		free(ptr);
 		return (0);
 	}
+	game->t_north = ptr[0];
 	free (ptr);
 	return (1);
 }
@@ -50,13 +50,13 @@ int	load_so(t_game *game, t_parse *parse)
 	if (!ptr)
 		return (0);
 	ptr[0] = load_sprite(game->mlx, parse->info->so_path);
-	game->t_south = ptr[0];
 	if (ptr[0] == NULL)
 	{
 		free(ptr[0]);
 		free(ptr);
 		return (0);
 	}
+	game->t_south = ptr[0];
 	free (ptr);
 	return (1);
 }
@@ -69,13 +69,13 @@ int	load_we(t_game *game, t_parse *parse)
 	if (!ptr)
 		return (0);
 	ptr[0] = load_sprite(game->mlx, parse->info->we_path);
-	game->t_west = ptr[0];
 	if (ptr[0] == NULL)
 	{
 		free(ptr[0]);
 		free(ptr);
 		return (0);
 	}
+	game->t_west = ptr[0];
 	free (ptr);
 	return (1);
 }
@@ -88,13 +88,13 @@ int	load_ea(t_game *game, t_parse *parse)
 	if (!ptr)
 		return (0);
 	ptr[0] = load_sprite(game->mlx, parse->info->ea_path);
-	game->t_east = ptr[0];
 	if (ptr[0] == NULL)
 	{
 		free(ptr[0]);
 		free(ptr);
 		return (0);
 	}
+	game->t_east = ptr[0];
 	free (ptr);
 	return (1);
 }

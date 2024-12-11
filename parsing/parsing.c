@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 10:33:10 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/10 13:52:00 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:39:01 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,17 @@ int	check_id(char *str, t_parse *parse)
 int	check_fill(t_parse *parse)
 {
 	if (parse->info->no_path == NULL)
-		free_and_exit(parse, 1, "Error \nNo north texture\n");
+		free_and_exit(parse, 1, "Error\nNo north texture\n");
 	if (parse->info->so_path == NULL)
-		free_and_exit(parse, 1, "Error \nNo south texture\n");
+		free_and_exit(parse, 1, "Error\nNo south texture\n");
 	if (parse->info->we_path == NULL)
-		free_and_exit(parse, 1, "Error \nNo west texture\n");
+		free_and_exit(parse, 1, "Error\nNo west texture\n");
 	if (parse->info->ea_path == NULL)
-		free_and_exit(parse, 1, "Error \nNo east texture\n");
+		free_and_exit(parse, 1, "Error\nNo east texture\n");
 	if (parse->info->f_color == NULL)
-		free_and_exit(parse, 1, "Error \nNo floor color\n");
+		free_and_exit(parse, 1, "Error\nNo floor color\n");
 	if (parse->info->c_color == NULL)
-		free_and_exit(parse, 1, "Error \nNo ceiling color\n");
+		free_and_exit(parse, 1, "Error\nNo ceiling color\n");
 	return (1);
 }
 

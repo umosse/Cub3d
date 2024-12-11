@@ -6,7 +6,7 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:23:24 by umosse            #+#    #+#             */
-/*   Updated: 2024/12/10 14:55:48 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:39:30 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,5 +197,7 @@ void	free_game(t_game *game, t_parse *parse, int print, char *str);
 void	ft_minimap(t_game *game);
 int		ft_xpm_to_image(t_game *game);
 int		check_args_for_rgb(int r, int g, int b, char **rgb);
-int		check_empty_line(t_parse *parse, int i, int l);
+int		check_empty_line(t_parse *parse);
+int		parse_args(t_parse *parse, int fd, char **av);
+
 #endif 

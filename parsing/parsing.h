@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:13:05 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/25 16:25:33 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:28:03 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_parse
 	char	*temp;
 	int		last;
 	int		first_line;
+	int		last_line;
 	char	**map;
 	char	**map_square;
 	int		max_x;
@@ -79,7 +80,6 @@ int		ft_atoi(const char *str);
 int		count_symbol(char *str, char symbol);
 int		check_file(char *av);
 int		get_line(char *file);
-int		parse_args(t_parse *parse, int fd, char **av);
 int		check_map(t_parse *parse, int fd, char *av);
 int		is_all_fill(t_parse *parse);
 int		is_space(int c);

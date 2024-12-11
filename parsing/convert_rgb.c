@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:51:07 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/10 14:26:06 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/11 14:19:40 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	check_f(char *str, t_parse *parse, t_info *info)
 	if (parse->info->f_ok == 1)
 		free_and_exit(parse, 1, "Error\ntoo many F \n");
 	res = new_string(str, 1);
+	if (res == NULL)
+		free_and_exit(parse, 1, "Error\nError in F\n");
 	parse->info->f_ok = 1;
 	i = skip_space(res);
 	j = i;
@@ -51,6 +53,8 @@ int	check_c(char *str, t_parse *parse, t_info *info)
 	if (parse->info->c_ok == 1)
 		free_and_exit(parse, 1, "Error\ntoo many C \n");
 	res = new_string(str, 1);
+	if (res == NULL)
+		free_and_exit(parse, 1, "Error\nError in C\n");
 	parse->info->c_ok = 1;
 	i = skip_space(res);
 	j = i;
