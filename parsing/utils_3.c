@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:46:12 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/11 13:58:46 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:23:02 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,15 @@ int	check_first_last_wall(t_parse *parse)
 	int	i;
 	int	j;
 	int	k;
+	int	m;
 
 	i = 0;
 	while (i < parse->max_y && parse->map_square[i])
 	{
 		j = skip_space(parse->map_square[i]);
 		k = skip_space_reverse(parse->map_square[i]);
-		if (k <= 0 || j == (int) ft_strlen(parse->map_square[i]))
+		m = (int) ft_strlen(parse->map_square[i]);
+		if (k <= 0 || j == m)
 		{
 			i++;
 			break ;

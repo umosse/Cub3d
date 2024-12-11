@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:56:23 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/11 10:42:22 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:31:54 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ int	get_line(char *file)
 
 int	check_lines(t_parse *parse, int i, int j, int k)
 {
-	if (j == (int)ft_strlen(parse->lines[i]))
+	int	l;
+
+	l = (int)ft_strlen(parse->lines[i]);
+	if (j == l)
 	{
 		j = 0;
 		while (parse->lines[i][j])
@@ -105,10 +108,13 @@ int	check_args_for_rgb(int r, int g, int b, char **rgb)
 	j = 0;
 	while (i < 3)
 	{
-		if (rgb[i][j] >= '0' && rgb[i][j] <= '9')
-			j++;
-		else
-			return (0);
+		while (rgb[i][j])
+		{
+			if (rgb[i][j] >= '0' && rgb[i][j] <= '9')
+				j++;
+			else
+				return (0);
+		}
 		j = 0;
 		i++;
 	}

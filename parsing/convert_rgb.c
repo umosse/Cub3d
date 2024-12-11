@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:51:07 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/11 14:19:40 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:33:48 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,10 @@ int	convert_f(char *str, t_parse *parse, t_info *info)
 			if (check_args_for_rgb(r, g, b, info->f_rgb) == 1)
 				info->f = get_color(r, g, b);
 			else
-				free_and_exit(parse, 1, "Error\nBad args in F1\n");
+				free_and_exit(parse, 1, "Error\nBad args in F\n");
 		}
 		else
-			free_and_exit(parse, 1, "Error\nBad args in F2\n");
+			free_and_exit(parse, 1, "Error\nBad args in F\n");
 	}
 	else
 		return (0);
@@ -128,10 +128,10 @@ int	convert_c(char *str, t_parse *parse, t_info *info)
 			if (check_args_for_rgb(r, g, b, info->c_rgb) == 1)
 				info->c = get_color(r, g, b);
 			else
-				free_and_exit(parse, 1, "Error\nBad args in C1\n");
+				free_and_exit(parse, 1, "Error\nBad args in C\n");
 		}
 		else
-			free_and_exit(parse, 1, "Error\nBad args in C2\n");
+			free_and_exit(parse, 1, "Error\nBad args in C\n");
 	}
 	else
 		return (0);
