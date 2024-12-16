@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 13:36:19 by aroualid          #+#    #+#             */
-/*   Updated: 2024/11/27 13:51:48 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:52:11 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <strings.h>
 # include <ctype.h>
 # include <string.h>
-# include <sys/select.h>
+# include <sys/select.h> 
 # include <bits/posix2_lim.h>
 # include <sys/types.h>
 # include "libft.h"

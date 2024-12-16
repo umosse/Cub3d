@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:46:12 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/16 13:48:51 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/16 14:45:01 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,14 @@ void	max_map(t_parse *parse)
 {
 	int		taille;
 	int		i;
+	int		len;
 
 	taille = 0;
 	i = 0;
 	while (i < get_line(parse->av) - parse->first_line && parse->map[i])
 	{
-		if ((parse->map[i]) && (taille < (int)ft_strlen(parse->map[i])))
+		len = ft_strlen(parse->map[i]);
+		if ((parse->map[i]) && (taille < len))
 			taille = (int)ft_strlen(parse->map[i]);
 		i++;
 	}

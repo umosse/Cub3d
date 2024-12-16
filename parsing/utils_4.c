@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:56:23 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/11 16:31:54 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:07:49 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,23 @@ int	check_lines(t_parse *parse, int i, int j, int k)
 	return (1);
 }
 
+int	fill_map_lines_utils(t_parse *parse, int i)
+{
+	int	j;
+	int	len;
+
+	j = 0;
+	len = ft_strlen(parse->lines[i]);
+	while (j < len)
+	{
+		if (is_ok(parse->lines[i][j]) == 1)
+			j++;
+		else if (is_ok(parse->lines[i][j]) == 0)
+			free_and_exit(parse, 1, "Error\nMap Invalid 2\n");
+	}
+	return (j);
+}
+
 int	fill_map_lines(t_parse *parse, int max, int fd)
 {
 	int	i;
@@ -68,14 +85,7 @@ int	fill_map_lines(t_parse *parse, int max, int fd)
 	while (i < max)
 	{
 		parse->lines[i] = get_next_line(fd);
-		j = 0;
-		while (j < (int)ft_strlen(parse->lines[i]))
-		{
-			if (is_ok(parse->lines[i][j]) == 1)
-				j++;
-			else if (is_ok(parse->lines[i][j]) == 0)
-				free_and_exit(parse, 1, "Error\nMap Invalid 2\n");
-		}
+		j = fill_map_lines_utils(parse, i);
 		check_lines(parse, i, j, k);
 		i++;
 		k++;
@@ -97,28 +107,4 @@ void	fill_map(t_parse *parse, int max, int fd)
 		find_player_pos(parse);
 	else
 		free_and_exit(parse, 1, "Error\nWrong Number of Players\n");
-}
-
-int	check_args_for_rgb(int r, int g, int b, char **rgb)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (i < 3)
-	{
-		while (rgb[i][j])
-		{
-			if (rgb[i][j] >= '0' && rgb[i][j] <= '9')
-				j++;
-			else
-				return (0);
-		}
-		j = 0;
-		i++;
-	}
-	if (r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255)
-		return (1);
-	return (0);
 }

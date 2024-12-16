@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:12:24 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/11 14:02:31 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:04:45 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,29 @@ int	ft_xpm_to_image(t_game *game)
 	if (load_ea(game, game->parse) == 0)
 		free_game(game, game->parse, 1, "Error\nInvalid EA texture\n");
 	load_door(game);
+	return (0);
+}
+
+int	check_args_for_rgb(int r, int g, int b, char **rgb)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < 3)
+	{
+		while (rgb[i][j])
+		{
+			if (rgb[i][j] >= '0' && rgb[i][j] <= '9')
+				j++;
+			else
+				return (0);
+		}
+		j = 0;
+		i++;
+	}
+	if (r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255)
+		return (1);
 	return (0);
 }

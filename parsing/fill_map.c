@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:37:57 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/10 13:19:56 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:08:13 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,15 @@ int	check_map(t_parse *parse, int fd, char *av)
 {
 	int	i;
 	int	j;
+	int	len;
 
 	i = parse->last;
 	while (i < get_line(av))
 	{
 		parse->lines[i] = get_next_line(fd);
+		len = ft_strlen(parse->lines[i]);
 		j = skip_space(parse->lines[i]);
-		if (j == (int) ft_strlen(parse->lines[i]))
+		if (j == len)
 			;
 		else if (first_line(parse, i) == 1)
 			return (1);

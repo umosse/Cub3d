@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 10:20:14 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/11 13:58:19 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:12:15 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,15 @@ int	check_empty_line(t_parse *parse)
 	int	i;
 	int	l;
 	int	j;
+	int	len;
 
 	j = 0;
 	i = parse->first_line;
 	while (i < get_line(parse->av) && parse->lines[i])
 	{
+		len = ft_strlen(parse->lines[i]);
 		l = skip_space(parse->lines[i]);
-		if (l == (int)ft_strlen(parse->lines[i]))
+		if (l == len)
 		{
 			j = i;
 		}

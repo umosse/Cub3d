@@ -6,7 +6,7 @@
 #    By: umosse <umosse@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/04 12:53:11 by umosse            #+#    #+#              #
-#    Updated: 2024/12/09 16:17:24 by aroualid         ###   ########.fr        #
+#    Updated: 2024/12/16 14:49:53 by aroualid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS = cub3d.c cub3dutils.c cub3dutils2.c movement.c movementutils.c movementuti
 SRCS_BONUS = 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
-CFLAGS = -Wall -Werror -Wextra -g3
+CFLAGS = -Wall -Werror -Wextra -g3 -O2 -fno-builtin
 RM = rm -f
 
 all: $(NAME)

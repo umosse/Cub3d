@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:51:13 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/11 14:16:08 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:08:04 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ char	*new_string(char *str, int taille)
 {
 	char	*res;
 	int		k;
+	int		len;
 
 	res = ft_calloc(sizeof(char *), ft_strlen(str));
 	if (!res)
 		return (res = NULL);
 	k = 0;
-	while (taille < (int)ft_strlen(str))
+	len = (int) ft_strlen(str);
+	while (taille < len)
 	{
 		res[k] = str[taille];
 		k++;
