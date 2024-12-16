@@ -6,7 +6,7 @@
 /*   By: aroualid <aroualid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 10:05:56 by aroualid          #+#    #+#             */
-/*   Updated: 2024/12/10 13:43:44 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/16 13:41:40 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static void	draw_dir(t_game *game, int color)
 	i = 0;
 	while (i < 15)
 	{
-		my_mlx_pixel_put(&game->data, x + i * -game->diry,
-			y + i * game->dirx, color);
+		my_mlx_pixel_put(&game->data, x + i * game->dirx,
+			y + i * game->diry, color);
 		i++;
 	}
 }
@@ -69,8 +69,8 @@ void	minimap_utils(t_game *game, int player_x, int player_y, int x_min)
 		if ((x_min >= 0 && x_min < game->parse->max_x)
 			&& (y_min >= 0 && y_min < game->parse->max_y))
 		{
-			map_x = W_LENGTH - 150 + (75 - 5) - (y_min - player_y) * 10;
-			map_y = (75 - 5) + (x_min - player_x) * 10;
+			map_x = W_LENGTH - 150 + (75 - 5) + (x_min - player_x) * 10;
+			map_y = (75 - 5) + (y_min - player_y) * 10;
 			if (x_min == player_x && y_min == player_y)
 				draw_case(game, map_x, map_y, 0x2fffff);
 			else if (game->parse->map_square[y_min][x_min] == '1')
