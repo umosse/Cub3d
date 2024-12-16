@@ -6,15 +6,15 @@
 /*   By: umosse <umosse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 13:28:29 by umosse            #+#    #+#             */
-/*   Updated: 2024/12/09 14:36:47 by aroualid         ###   ########.fr       */
+/*   Updated: 2024/12/16 14:25:47 by aroualid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_setup_e(t_game *game)
+void	ft_setup_w(t_game *game)
 {
-	if (game->parse->orientation == 'E')
+	if (game->parse->orientation == 'W')
 	{
 		game->olddirx = game->dirx;
 		game->dirx = game->dirx * cos(-1 * M_PI / 2)
@@ -29,9 +29,9 @@ void	ft_setup_e(t_game *game)
 	}
 }
 
-void	ft_setup_w(t_game *game)
+void	ft_setup_e(t_game *game)
 {
-	if (game->parse->orientation == 'W')
+	if (game->parse->orientation == 'E')
 	{
 		game->olddirx = game->dirx;
 		game->dirx = game->dirx * cos(-1 * 3 * M_PI / 2)
